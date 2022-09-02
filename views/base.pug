@@ -1,0 +1,25 @@
+doctype html
+html 
+    head 
+      block head
+        meta(charset='UTF-8')
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        //- link(href="https://fonts.googleapis.com/css2?family=Sigmar+One&display=swap",rel="stylesheet")
+        link(href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap",rel="stylesheet")
+        link(rel="stylesheet", href="/css/style.css")
+        link(rel="shortcut icon", href="/img/favicon.png", type="image/png")
+        title Lab Repo | #{title}
+
+    body
+        //- Header
+        include _navbar 
+
+        //- Content
+        block content 
+
+        //- Footer:
+        include _footer
+
+        //- Scripts
+        script(src="/socket.io/socket.io.js")
+        script(src="/js/index.js")

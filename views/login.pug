@@ -1,0 +1,16 @@
+extends base
+
+block content
+    .auth-container 
+        .auth-card 
+            h3 Log In
+            form
+                .form-control
+                    input(type='email' placeholder='E-Mail')
+                .form-control
+                    input(type='password' placeholder='Password')
+                .form-control
+                    button(type='button') Sign Up
+                .have-account-item
+                    p Don't have an account? &nbsp;
+                    a(href='/signup') Sign Up

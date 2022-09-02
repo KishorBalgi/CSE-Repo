@@ -1,0 +1,18 @@
+extends base
+
+block content 
+    .auth-container 
+        .auth-card 
+            h3 Sign Up
+            form
+                .form-control
+                    input(type="text" placeholder="Name")
+                .form-control
+                    input(type='email' placeholder='E-Mail')
+                .form-control
+                    input(type='password' placeholder='Password')
+                .form-control
+                    button(type='button') Sign Up
+                .have-account-item
+                    p Have an account?&nbsp;
+                    a(href='/login') Log In
