@@ -1,0 +1,18 @@
+extends base
+
+block content
+    .profile 
+        .profile-card 
+            .profile-avatar 
+                img(src=user.avatar alt="avatar" class="profile-avatar-img")
+                button(type="button" class="profile-btn btn-rand-avatar") Random Avatar
+            form.profile-info.update-profile-form 
+                h2 Edit Profile
+                .profile-detail
+                    label(for="name") Name :
+                    input(type="text" name="name" value=user.name class="profile-edit-name" placeholder="Enter your name" required)
+                .profile-detail
+                    label(for="email") E-Mail :
+                    input(type="text" name="email" value=user.email required disabled)
+                .profile-btns 
+                    button(type="submit" class="profile-btn") Save

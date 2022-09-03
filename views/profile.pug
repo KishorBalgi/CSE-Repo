@@ -1,0 +1,17 @@
+extends base
+
+block content
+    .profile 
+        .profile-card 
+            .profile-avatar 
+                img(src=user.avatar alt="avatar")
+                a(href="/profile/change-password" class="profile-btn profile-pass") Change Password
+            .profile-info 
+                .profile-detail
+                    p Name : #{user.name}
+                .profile-detail
+                    p E-Mail : #{user.email}
+                .profile-btns 
+                    a(href="/profile/edit" class="profile-btn profile-edit") Edit
+                    a(href="/profile/delete" class="profile-btn profile-delete") Delete
+    

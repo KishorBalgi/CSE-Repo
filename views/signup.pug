@@ -4,15 +4,15 @@ block content
     .auth-container 
         .auth-card 
             h3 Sign Up
-            form
+            form.signup-form
                 .form-control
-                    input(type="text" placeholder="Name")
+                    input(type="text" placeholder="Name" class="signup-name" required)
                 .form-control
-                    input(type='email' placeholder='E-Mail')
+                    input(type='email' placeholder='E-Mail' class="signup-email" required)
                 .form-control
-                    input(type='password' placeholder='Password')
+                    input(type='password' placeholder='Password' class="signup-password" required)
                 .form-control
-                    button(type='button') Sign Up
+                    button(type='submit' class='signup-btn') Sign Up
                 .have-account-item
                     p Have an account?&nbsp;
                     a(href='/login') Log In
