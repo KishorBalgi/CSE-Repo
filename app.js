@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const compression = require("compression");
 const cors = require("cors");
 const AppError = require("./util/appError");
+const globalErrorHandler = require("./controllers/errorController");
 // Routers:
 const viewRouter = require("./routes/viewRoutes");
 const userRouter = require("./routes/userRoutes");
@@ -23,6 +24,10 @@ app.use(express.json({ limit: "10kb" }));
 app.use(cookieParser());
 
 // Routes:
+// app.use("/", (req, res, next) => {
+//   console.log(req.connection.remoteAddress);
+//   next();
+// });
 app.use("/api/v1/users", userRouter);
 
 app.use("/", viewRouter);
@@ -31,7 +36,8 @@ app.all("*", (req, res, next) => {
   res.render("error", {
     title: "404 Not Found",
   });
-  //   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
+  // next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
 });
+app.use(globalErrorHandler);
 
 module.exports = app;

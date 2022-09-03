@@ -3,9 +3,17 @@ nav.main-nav
         h1 Lab Repo
     ul 
         li 
-            a(href="/login") Login 
-        li
-            a(href="/signup") Signup
+            a(href="/") Home
+        if user 
+            li
+                a(class='logout-btn') Logout
+            a(href='/profile') 
+                img(src=user.avatar class='avatar')
+        else 
+            li 
+                a(href="/login") Login
+            li 
+                a(href="/signup") Signup
 
     p.view-count Viewers: 
         span.count 0

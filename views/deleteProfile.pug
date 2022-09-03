@@ -1,0 +1,18 @@
+extends base
+
+block content
+    .profile 
+        .profile-card 
+            .profile-avatar 
+                img(src=user.avatar alt="avatar")
+            form.profile-info.delete-profile-form 
+                h2 Delete Account
+                .profile-detail
+                    p Name : #{user.name}
+                .profile-detail
+                    p E-Mail : #{user.email}
+                .profile-detail
+                    label(for="name") Password :
+                    input(type="password" name="Password" class="del-password" placeholder="Enter your password" required)
+                .profile-btns 
+                    button(type="submit" class="profile-btn profile-delete") Delete

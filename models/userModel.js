@@ -21,6 +21,11 @@ const userSchema = new mongoose.Schema({
     required: [true, "Password is required"],
     minlength: [8, "Password must be at least 8 characters long"],
     maxlength: [30, "Password must be less than 30 characters long"],
+    select: false,
+  },
+  avatar: {
+    type: String,
+    default: "https://robohash.org/87d5y",
   },
   role: {
     type: String,

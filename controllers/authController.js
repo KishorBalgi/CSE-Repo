@@ -41,7 +41,12 @@ exports.signup = catchAsync(async (req, res, next) => {
     return next(new AppError("User already exists", 400));
   }
   //   Create user:
-  const newUser = await User.create({ name, email, password });
+  const newUser = await User.create({
+    name,
+    email,
+    password,
+    avatar: `https://robohash.org/${name.split(" ")[0]}`,
+  });
   // Token:
   sendJWTToken(newUser, 201, res, req);
 });
@@ -70,3 +75,73 @@ exports.logout = (req, res) => {
   });
   res.status(200).json({ status: "success" });
 };
+
+// Change Password:
+exports.changePassword = catchAsync(async (req, res, next) => {
+  const { curPassword, newPassword } = req.body;
+  const user = await User.findById(req.user.id).select("+password");
+  if (!(await user.checkPassword(curPassword, user.password))) {
+    return next(new AppError("Incorrect password", 401));
+  }
+  user.password = newPassword;
+  await user.save();
+  res.status(200).json({
+    status: "success",
+    message: "Your password has been changed",
+  });
+});
+
+// Protect routes:
+exports.protect = catchAsync(async (req, res, next) => {
+  let token;
+  //   Check if token exists:
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith("Bearer")
+  ) {
+    token = req.headers.authorization.split(" ")[1];
+  } else if (req.cookies.jwt) {
+    token = req.cookies.jwt;
+  }
+  if (!token) {
+    return next(new AppError("You are not logged in", 401));
+  }
+  //   Verify token:
+  const decoded = await jwt.verify(token, process.env.JWT_SECRET);
+  //   Check if user still exists:
+  const user = await User.findById(decoded.id);
+  if (!user) {
+    return next(new AppError("User no longer exists", 401));
+  }
+  //   Check if user changed password after token was issued:
+  // if (user.changedPasswordAfter(decoded.iat)) {
+  //   return next(new AppError("Password has been changed", 401));
+  // }
+  //   Grant access to protected route:
+  req.user = user;
+  next();
+});
+
+// Check if user is logged in:
+exports.isLoggedIn = catchAsync(async (req, res, next) => {
+  try {
+    if (req.cookies.jwt) {
+      const decoded = await jwt.verify(req.cookies.jwt, process.env.JWT_SECRET);
+      //   Check if user still exists:
+      const user = await User.findById(decoded.id);
+      if (!user) {
+        return next();
+      }
+      //   Check if user changed password after token was issued:
+      // if (user.changedPasswordAfter(decoded.iat)) {
+      //   return next();
+      // }
+      //   Grant access to protected route:
+      res.locals.user = user;
+      return next();
+    }
+  } catch (err) {
+    return next();
+  }
+  next();
+});
