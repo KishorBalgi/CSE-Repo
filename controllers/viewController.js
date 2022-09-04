@@ -1,6 +1,10 @@
 const catchAsync = require("../util/catchAsync");
 
 exports.getIndex = catchAsync(async (req, res, next) => {
+  // Get user ip address:
+  const ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
+  console.log(ip);
+  console.log(req.ip);
   res.render("index", {
     title: "Home",
   });
