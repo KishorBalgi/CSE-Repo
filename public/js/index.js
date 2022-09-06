@@ -22,9 +22,9 @@ if (loginForm) {
   loginForm.addEventListener("submit", login);
 }
 // Logout:
-const logoutBtn = document.querySelector(".logout-btn");
+const logoutBtn = document.querySelectorAll(".logout-btn");
 if (logoutBtn) {
-  logoutBtn.addEventListener("click", logout);
+  logoutBtn.forEach((e) => e.addEventListener("click", logout));
 }
 
 // Profile:
@@ -51,4 +51,35 @@ if (changePasswordForm) {
 const deleteAccountForm = document.querySelector(".delete-profile-form ");
 if (deleteAccountForm) {
   deleteAccountForm.addEventListener("submit", deleteAccount);
+}
+
+// Mobile Menu:
+const mobMenuBtn = document.querySelector(".mob-menu-btn");
+const mobMenu = document.querySelector(".mob-menu");
+const mobMenuItems = document.querySelectorAll(".mob-menu li");
+const overlay = document.querySelector(".overlay");
+
+const closeMobMenu = () => {
+  mobMenu.style.animation = "SlideOut 0.6s ease-in-out";
+  setTimeout(() => {
+    mobMenu.style.display = "none";
+    overlay.style.display = "none";
+    mobMenu.style.animation = "SlideIn 0.6s ease-in-out";
+  }, 600);
+};
+
+// Open Mobile Menu:
+if (mobMenuBtn) {
+  mobMenuBtn.addEventListener("click", () => {
+    mobMenu.style.display = "flex";
+    overlay.style.display = "block";
+  });
+}
+
+// Close Mobile Menu:
+if (mobMenuItems) {
+  mobMenuItems.forEach((e) => e.addEventListener("click", closeMobMenu));
+}
+if (overlay) {
+  overlay.addEventListener("click", closeMobMenu);
 }

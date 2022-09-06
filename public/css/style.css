@@ -41,24 +41,26 @@ button {
   top: 0;
   left: 0;
   padding: 5px 60px;
-  z-index: 1;
+  z-index: 10;
 }
 .main-nav h1 {
   font-size: 30px;
 }
 .main-nav ul {
+  list-style: none;
+}
+.main-menu {
   display: flex;
   align-items: center;
-  list-style: none;
   margin: 0;
   padding: 0;
 }
-.main-nav ul li {
+.main-menu li {
   font-size: 16px;
   margin-right: 20px;
   cursor: pointer;
 }
-.main-nav ul li > a:after {
+.main-menu li > a:after {
   content: "";
   display: block;
   width: 0;
@@ -66,7 +68,7 @@ button {
   background: #fff;
   transition: width 0.3s;
 }
-.main-nav ul li > a:hover::after {
+.main-menu li > a:hover::after {
   width: 100%;
 }
 .view-count {
@@ -79,6 +81,47 @@ button {
   height: 45px;
   border-radius: 50%;
   background-color: var(--clr-background);
+}
+/* Mobile Menu */
+.mob-menu-btn {
+  display: none;
+  background: url(../icons/menu.png);
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
+}
+.mob-menu {
+  display: none;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 100vh;
+  padding-top: 50px;
+  background: var(--clr-foreground);
+  animation: SlideIn 0.6s ease-in-out;
+  z-index: 2;
+}
+.mob-menu li {
+  text-align: center;
+  cursor: pointer;
+}
+.mob-menu li a {
+  display: block;
+  background-color: var(--clr-background);
+  padding: 10px 0;
+  margin: 5px 10px;
+  border-radius: 10px;
+  color: #fff;
+}
+.mob-menu-avatar {
+  text-align: center;
+  margin: 10px 0 30px 0;
+}
+.mob-menu-avatar .avatar {
+  width: 100px;
+  height: 100px;
 }
 
 /* Home */
@@ -115,21 +158,19 @@ button {
 /* Alert */
 .alert {
   position: absolute;
-  /* horizontal center */
   left: 50%;
-  /* vertical center */
   top: 60px;
-  /* move to the left by half of the width */
   transform: translate(-50%);
-  min-width: 50%;
-  max-width: fit-content;
-  height: 50px;
+  width: fit-content;
+  min-height: 50px;
+  max-height: fit-content;
   background: var(--clr-foreground);
   display: none;
   justify-content: center;
   align-items: center;
   border-radius: 20px 5px 20px 5px;
-  z-index: 1;
+  padding: 5px 20px;
+  z-index: 15;
 }
 .alert-msg {
   font-size: 16px;
@@ -296,6 +337,19 @@ button {
 .error-page div {
   text-align: center;
 }
+/* Overlay */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  z-index: 5;
+}
+/* Animations */
 @keyframes shake {
   10%,
   90% {
@@ -318,11 +372,28 @@ button {
     transform: translate3d(4px, 0, 0);
   }
 }
+@keyframes SlideIn {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes SlideOut {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
 
 /* Footer */
 .footer {
   width: 100%;
-  height: 50px;
+  min-height: 50px;
+  max-height: fit-content;
   background: var(--clr-foreground);
   position: fixed;
   bottom: 0;
@@ -330,9 +401,77 @@ button {
   padding: 5px 60px;
   display: grid;
   place-items: center;
-  z-index: 1;
+  z-index: 10;
 }
 .footer__copyright {
   font-size: 17px;
   text-align: center;
+}
+
+/* Media Queries */
+@media screen and (max-width: 1350px) {
+  .card {
+    width: 250px;
+  }
+}
+
+@media screen and (max-width: 1110px) {
+  .card {
+    width: 200px;
+  }
+  .auth-card {
+    width: 50%;
+  }
+  .profile-card {
+    flex-direction: column;
+  }
+  .profile-info {
+    margin-top: 20px;
+  }
+  .alert-msg {
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 880px) {
+  .card-container {
+    flex-direction: column;
+    align-items: normal;
+    justify-content: center;
+  }
+  .card {
+    width: 90%;
+    margin: 10px auto;
+  }
+  .footer {
+    padding: 5px 20px;
+  }
+  .footer__copyright {
+    font-size: 14px;
+  }
+  .auth-card {
+    width: 70%;
+  }
+  .profile-card {
+    width: 80%;
+  }
+  .alert {
+    width: 90%;
+  }
+}
+@media screen and (max-width: 590px) {
+  .main-nav h1 {
+    font-size: 20px;
+  }
+  .main-menu {
+    display: none !important;
+  }
+  .mob-menu-btn {
+    display: block;
+  }
+  .auth-card {
+    width: 90%;
+  }
+  .have-account-item {
+    font-size: 12px;
+  }
 }
