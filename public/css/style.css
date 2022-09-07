@@ -86,6 +86,7 @@ button {
 .mob-menu-btn {
   display: none;
   background: url(../icons/menu.png);
+  background-size: contain;
   height: 25px;
   width: 25px;
   cursor: pointer;
@@ -146,10 +147,6 @@ button {
   background-color: var(--clr-foreground);
   border-radius: 10px;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
-}
-.card:hover {
-  transform: scale(1.1);
 }
 .card__title {
   font-size: 25px;
@@ -158,9 +155,9 @@ button {
 /* Alert */
 .alert {
   position: absolute;
-  left: 50%;
   top: 60px;
-  transform: translate(-50%);
+  left: 0;
+  right: 0;
   width: fit-content;
   min-height: 50px;
   max-height: fit-content;
@@ -170,6 +167,7 @@ button {
   align-items: center;
   border-radius: 20px 5px 20px 5px;
   padding: 5px 20px;
+  margin: auto;
   z-index: 15;
 }
 .alert-msg {

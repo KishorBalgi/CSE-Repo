@@ -11849,8 +11849,8 @@ var closeMobMenu = function closeMobMenu() {
   mobMenu.style.animation = "SlideOut 0.6s ease-in-out";
   setTimeout(function () {
     mobMenu.style.display = "none";
-    mobMenu.style.animation = "SlideIn 0.6s ease-in-out";
     overlay.style.display = "none";
+    mobMenu.style.animation = "SlideIn 0.6s ease-in-out";
   }, 600);
 }; // Open Mobile Menu:
 
@@ -11900,7 +11900,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59717" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51171" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
