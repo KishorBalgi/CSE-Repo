@@ -1,0 +1,12 @@
+extends base
+
+block content
+    main.labs
+        h1 Labs
+        each sem in sems
+            .sem-block
+                p.sem-title="Sem-"+sem._id
+                .sem-labs
+                    each lab in sem.labs
+                        .sem-lab
+                            p.lab-title="Lab-"+lab.name        

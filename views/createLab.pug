@@ -1,0 +1,21 @@
+extend base
+
+block content
+    .auth-container.animate__animated.animate__zoomIn
+        .auth-card 
+            h3 Create New Lab
+            form.createLab-form
+                .form-control
+                    input(type='text' placeholder='Lab Name' class='lab-name' required)
+                .form-control
+                    select(name="Semester" class='lab-semester' required)
+                        option(value="1") First 
+                        option(value="2") Second
+                        option(value="3") Third
+                        option(value="4") Fourth
+                        option(value="5") Fifth
+                        option(value="6") Sixth
+                        option(value="7") Seventh
+                        option(value="8") Eigth
+                .form-control
+                    button(type='submit' class='createLab-btn') Create

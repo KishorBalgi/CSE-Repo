@@ -1,4 +1,5 @@
 const catchAsync = require("../util/catchAsync");
+const Lab = require("../models/labModel");
 
 exports.getIndex = catchAsync(async (req, res, next) => {
   // Get user ip address:
@@ -48,5 +49,37 @@ exports.getChangePassword = catchAsync(async (req, res, next) => {
 exports.getDeleteAccount = catchAsync(async (req, res, next) => {
   res.render("deleteProfile", {
     title: "Delete Account",
+  });
+});
+
+// Labs:
+exports.getLabs = catchAsync(async (req, res, next) => {
+  // Get All Labs group by semester and order by semeseter number:
+  const sems = await Lab.aggregate([
+    {
+      $group: {
+        _id: "$semester",
+        labs: {
+          $push: "$$ROOT",
+        },
+      },
+    },
+    {
+      $sort: {
+        _id: 1,
+      },
+    },
+  ]);
+  console.log(sems);
+  res.render("labs", {
+    title: "Labs",
+    sems,
+  });
+});
+
+// Admin:
+exports.createLab = catchAsync(async (req, res, next) => {
+  res.render("createLab", {
+    title: "Create Lab",
   });
 });

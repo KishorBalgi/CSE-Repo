@@ -1,6 +1,7 @@
 import "@babel/polyfill";
 import { signup, login, logout, changePassword, deleteAccount } from "./auth";
 import { changeAvatar, updateProfile } from "./profile";
+import { createLab } from "./admin";
 let socket = io();
 const viewCount = document.querySelector(".view-count .count");
 
@@ -51,6 +52,14 @@ if (changePasswordForm) {
 const deleteAccountForm = document.querySelector(".delete-profile-form ");
 if (deleteAccountForm) {
   deleteAccountForm.addEventListener("submit", deleteAccount);
+}
+
+// Admin:
+
+// Create Lab:
+const createLabForm = document.querySelector(".createLab-form");
+if (createLabForm) {
+  createLabForm.addEventListener("submit", createLab);
 }
 
 // Mobile Menu:

@@ -9,6 +9,7 @@ const globalErrorHandler = require("./controllers/errorController");
 // Routers:
 const viewRouter = require("./routes/viewRoutes");
 const userRouter = require("./routes/userRoutes");
+const adminRouter = require("./routes/adminRoutes");
 
 // Pug template engine:
 app.set("view engine", "pug");
@@ -29,7 +30,7 @@ app.use(cookieParser());
 //   next();
 // });
 app.use("/api/v1/users", userRouter);
-
+app.use("/api/v1/admins", adminRouter);
 app.use("/", viewRouter);
 
 app.all("*", (req, res, next) => {
