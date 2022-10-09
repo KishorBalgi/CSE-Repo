@@ -11515,7 +11515,7 @@ exports.updateProfile = updateProfile;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.createLab = void 0;
+exports.uploadCode = exports.createLab = void 0;
 
 var _axios = _interopRequireDefault(require("axios"));
 
@@ -11531,7 +11531,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-var createLabBtn = document.querySelector(".createLab-btn"); // Signup:
+var createLabBtn = document.querySelector(".createLab-btn"); // Create Lab:
 
 var createLab = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(e) {
@@ -11588,9 +11588,73 @@ var createLab = /*#__PURE__*/function () {
   return function createLab(_x) {
     return _ref.apply(this, arguments);
   };
-}();
+}(); // Upload Code:
+
 
 exports.createLab = createLab;
+var uploadCodeBtn = document.querySelector(".uploadCode-btn");
+
+var uploadCode = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(e) {
+    var title, lab, code, data, res;
+    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            e.preventDefault();
+            uploadCodeBtn.innerHTML = "Uploading Code...";
+            uploadCodeBtn.disabled = true;
+            title = document.querySelector(".code-title").value;
+            lab = document.querySelector(".code-lab").value;
+            code = document.querySelector(".code-content").value;
+            data = {
+              title: title,
+              lab: lab,
+              code: code
+            };
+            console.log(data);
+            _context2.prev = 8;
+            _context2.next = 11;
+            return (0, _axios.default)({
+              method: "POST",
+              url: "/api/v1/admins/uploadCode",
+              data: data
+            });
+
+          case 11:
+            res = _context2.sent;
+
+            if (res.data.status === "success") {
+              (0, _alert.alert)("success", "Code Uploaded Successfully");
+              location.href = "/labs/codes/" + res.data.codeId;
+            }
+
+            _context2.next = 18;
+            break;
+
+          case 15:
+            _context2.prev = 15;
+            _context2.t0 = _context2["catch"](8);
+            (0, _alert.alert)("error", _context2.t0.response.data.message);
+
+          case 18:
+            uploadCodeBtn.innerHTML = "Upload";
+            uploadCodeBtn.disabled = false;
+
+          case 20:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, null, [[8, 15]]);
+  }));
+
+  return function uploadCode(_x2) {
+    return _ref2.apply(this, arguments);
+  };
+}();
+
+exports.uploadCode = uploadCode;
 },{"axios":"../../node_modules/axios/index.js","./alert":"alert.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
@@ -11929,6 +11993,13 @@ var createLabForm = document.querySelector(".createLab-form");
 
 if (createLabForm) {
   createLabForm.addEventListener("submit", _admin.createLab);
+} // Upload Code:
+
+
+var uploadCodeForm = document.querySelector(".uploadCode-form");
+
+if (uploadCodeForm) {
+  uploadCodeForm.addEventListener("submit", _admin.uploadCode);
 } // Mobile Menu:
 
 
@@ -11992,7 +12063,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60320" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55218" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

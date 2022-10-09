@@ -7,5 +7,6 @@ Router.use(authController.protect);
 Router.use(authController.restrictTo("admin"));
 
 Router.route("/createLab").post(adminController.createLab);
+Router.route("/uploadCode").post(adminController.uploadCode);
 
 module.exports = Router;

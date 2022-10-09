@@ -1,0 +1,11 @@
+extends base
+
+block content
+    main.labs
+        h1 #{title}
+        if codes.length == 0
+            p Sorry Nothing Here!
+        else
+            each code in codes
+                a(href="/labs/codes/"+code._id).sem-block.animate__animated.animate__fadeInRight
+                    p.sem-title.animate__animated.animate__fadeInLeftBig=code.title     

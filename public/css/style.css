@@ -18,16 +18,17 @@ a {
   text-decoration: none;
   color: #fff;
 }
-input {
+input,
+select,
+textarea {
   background: transparent;
   color: #fff;
+  resize: vertical;
 }
-input::placeholder {
+input::placeholder,
+select::placeholder,
+textarea::placeholder {
   color: #ddd;
-}
-select {
-  background: transparent;
-  color: #fff;
 }
 select option {
   color: #000;
@@ -208,7 +209,9 @@ button {
   display: flex;
   place-items: center;
 }
-.auth-card input {
+.auth-card input,
+.auth-card select,
+.auth-card textarea {
   width: 80%;
   height: 40px;
   border-radius: 5px;
@@ -216,13 +219,9 @@ button {
   padding: 0 10px;
   margin: 10px auto;
 }
-.auth-card select {
-  width: 80%;
-  height: 40px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  padding: 0 10px;
-  margin: 10px auto;
+.auth-card textarea {
+  min-height: 100px;
+  max-height: fit-content;
 }
 .auth-card button {
   width: 80%;
@@ -343,6 +342,7 @@ button {
   flex-direction: column;
   align-items: center;
   margin-top: 70px;
+  margin-bottom: 70px;
 }
 .sem-block {
   width: 80%;

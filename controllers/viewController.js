@@ -1,5 +1,6 @@
 const catchAsync = require("../util/catchAsync");
 const Lab = require("../models/labModel");
+const Code = require("../models/codeModel");
 
 exports.getIndex = catchAsync(async (req, res, next) => {
   // Get user ip address:
@@ -70,10 +71,29 @@ exports.getLabs = catchAsync(async (req, res, next) => {
       },
     },
   ]);
-  console.log(sems);
   res.render("labs", {
     title: "Labs",
     sems,
+  });
+});
+
+exports.getLab = catchAsync(async (req, res, next) => {
+  const lab = await Lab.findById(req.params.labId);
+  // find codes by labID:
+  const codes = await Code.find({
+    lab: req.params.labId,
+  }).select("title _id");
+  res.render("lab", {
+    title: lab.name,
+    codes,
+  });
+});
+
+exports.getLabCode = catchAsync(async (req, res, next) => {
+  const code = await Code.findById(req.params.codeId);
+  res.render("labCode", {
+    title: code.title,
+    code,
   });
 });
 
@@ -81,5 +101,13 @@ exports.getLabs = catchAsync(async (req, res, next) => {
 exports.createLab = catchAsync(async (req, res, next) => {
   res.render("createLab", {
     title: "Create Lab",
+  });
+});
+
+exports.uploadCode = catchAsync(async (req, res, next) => {
+  const labs = await Lab.find().sort({ name: 1 });
+  res.render("uploadCode", {
+    title: "Upload Code",
+    labs,
   });
 });

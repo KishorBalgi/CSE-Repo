@@ -1,4 +1,4 @@
-nav.main-nav.animate__animated.animate__fadeInDown
+nav.main-nav.animate__animated.animate__fadeIn
     span(class="mob-menu-btn")
                 
     a(href="/") 
@@ -6,6 +6,9 @@ nav.main-nav.animate__animated.animate__fadeInDown
     ul.main-menu
         li 
             a(href="/") Home
+        if user.role == "admin"
+            li 
+                a(href="/admin") Admin Panel
         if user 
             li
                 a(class='logout-btn') Logout
@@ -23,6 +26,9 @@ nav.main-nav.animate__animated.animate__fadeInDown
                 img(src=user.avatar class='avatar')
         li 
             a(href="/") Home
+        if user.role == "admin"
+            li 
+                a(href="/admin") Admin Panel
         if user 
             li
                 a(class='logout-btn') Logout

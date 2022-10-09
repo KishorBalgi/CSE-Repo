@@ -10,6 +10,8 @@ Router.route("/").get(viewController.getIndex);
 Router.route("/login").get(viewController.getLogin);
 Router.route("/signup").get(viewController.getSignup);
 Router.route("/labs").get(viewController.getLabs);
+Router.route("/labs/:labId").get(viewController.getLab);
+Router.route("/labs/codes/:codeId").get(viewController.getLabCode);
 
 // Protected Routes:
 Router.use(authController.protect);
@@ -21,4 +23,6 @@ Router.route("/profile/delete").get(viewController.getDeleteAccount);
 // Admins:
 Router.use(authController.restrictTo("admin"));
 Router.route("/admins/createLab").get(viewController.createLab);
+Router.route("/admins/uploadCode").get(viewController.uploadCode);
+
 module.exports = Router;

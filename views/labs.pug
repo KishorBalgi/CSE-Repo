@@ -4,9 +4,10 @@ block content
     main.labs
         h1 Labs
         each sem in sems
-            .sem-block
-                p.sem-title="Sem-"+sem._id
+            .sem-block.animate__animated.animate__fadeInRight
+                p.sem-title.animate__animated.animate__fadeInLeftBig="Sem-"+sem._id
                 .sem-labs
                     each lab in sem.labs
-                        .sem-lab
-                            p.lab-title="Lab-"+lab.name        
+                        a(href="/labs/"+lab._id)
+                            .sem-lab
+                                p.lab-title=lab.name        
