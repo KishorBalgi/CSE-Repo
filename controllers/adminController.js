@@ -7,7 +7,7 @@ const Code = require("../models/codeModel");
 exports.createLab = catchAsync(async (req, res, next) => {
   const data = req.body;
   //Check if Lab already exists
-  const lab = await Lab.findOne(data);
+  const lab = await Lab.findOne({ name: data.name, semester: data.semester });
   if (lab) {
     return next(new AppError(`Lab : ${lab.name} already exists`, 400));
   }

@@ -9,7 +9,8 @@ export const createLab = async (e) => {
   createLabBtn.disabled = true;
   const name = document.querySelector(".lab-name").value;
   const semester = document.querySelector(".lab-semester").value;
-  const data = { name, semester };
+  const info = document.querySelector(".lab-info").value;
+  const data = { name, semester, info };
   try {
     const res = await axios({
       method: "POST",

@@ -10,6 +10,14 @@ const labSchema = mongoose.Schema({
     type: String,
     required: [true, "Semester is required"],
   },
+  info: {
+    type: String,
+    required: [true, "Info is required"],
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now(),
+  },
 });
 
 const Lab = mongoose.model("Lab", labSchema);

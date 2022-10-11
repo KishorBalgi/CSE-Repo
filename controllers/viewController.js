@@ -1,6 +1,7 @@
 const catchAsync = require("../util/catchAsync");
 const Lab = require("../models/labModel");
 const Code = require("../models/codeModel");
+const User = require("../models/userModel");
 
 exports.getIndex = catchAsync(async (req, res, next) => {
   // Get user ip address:
@@ -84,13 +85,13 @@ exports.getLab = catchAsync(async (req, res, next) => {
     lab: req.params.labId,
   }).select("title _id");
   res.render("lab", {
-    title: lab.name,
+    lab,
     codes,
   });
 });
 
 exports.getLabCode = catchAsync(async (req, res, next) => {
-  const code = await Code.findById(req.params.codeId);
+  const code = await Code.findById(req.params.codeId).populate("uploader");
   res.render("labCode", {
     title: code.title,
     code,

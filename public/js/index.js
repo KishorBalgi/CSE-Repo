@@ -1,10 +1,36 @@
 import "@babel/polyfill";
+import hljs from "highlight.js";
+import "highlight.js/styles/tokyo-night-dark.css";
+import { alert } from "./alert";
 import { signup, login, logout, changePassword, deleteAccount } from "./auth";
 import { changeAvatar, updateProfile } from "./profile";
 import { createLab, uploadCode } from "./admin";
 let socket = io();
 const viewCount = document.querySelector(".view-count .count");
 
+// Highlight code:
+document.addEventListener("DOMContentLoaded", (event) => {
+  document.querySelectorAll("pre code").forEach((block) => {
+    block.style.display = "block";
+    hljs.highlightElement(block);
+  });
+});
+
+// Copy code to clipBoard:
+const copyCodeBtn = document.querySelector(".code-copy-btn");
+if (copyCodeBtn) {
+  copyCodeBtn.addEventListener("click", () => {
+    let code = document.querySelector(".code-container").innerText;
+    navigator.clipboard
+      .writeText(code)
+      .then(() => {
+        alert("success", "Code copied to Clipboard!");
+      })
+      .catch((err) => {
+        console.log("Something went wrong", err);
+      });
+  });
+}
 // Viewer count:
 socket.on("user-count-change", function (userCount) {
   viewCount.innerHTML = userCount;
@@ -66,6 +92,15 @@ if (createLabForm) {
 const uploadCodeForm = document.querySelector(".uploadCode-form");
 if (uploadCodeForm) {
   uploadCodeForm.addEventListener("submit", uploadCode);
+}
+
+// Code info panel:
+
+const codeInfo = document.querySelector(".code-info-btn");
+if (codeInfo) {
+  codeInfo.addEventListener("click", (event) => {
+    document.querySelector(".code-info").classList.toggle("show");
+  });
 }
 
 // Mobile Menu:
