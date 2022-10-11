@@ -6,10 +6,10 @@ nav.main-nav.animate__animated.animate__fadeIn
     ul.main-menu
         li 
             a(href="/") Home
-        if user.role == "admin"
-            li 
-                a(href="/admin") Admin Panel
         if user 
+            if user.role == "admin"
+                li 
+                    a(href="/admin") Admin Panel
             li
                 a(class='logout-btn') Logout
             a(href='/profile') 
