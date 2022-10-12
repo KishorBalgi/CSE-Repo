@@ -1,10 +1,15 @@
-nav.main-nav 
+nav.main-nav.animate__animated.animate__fadeIn
+    span(class="mob-menu-btn")
+                
     a(href="/") 
         h1 Lab Repo
-    ul 
+    ul.main-menu
         li 
             a(href="/") Home
         if user 
+            if user.role == "admin"
+                li 
+                    a(href="/admin") Admin Panel
             li
                 a(class='logout-btn') Logout
             a(href='/profile') 
@@ -14,6 +19,25 @@ nav.main-nav
                 a(href="/login") Login
             li 
                 a(href="/signup") Signup
+
+    ul.mob-menu 
+        if user 
+            a(href='/profile' class="mob-menu-avatar") 
+                img(src=user.avatar class='avatar')
+        li 
+            a(href="/") Home
+        if user 
+            if user.role == "admin"
+                li 
+                    a(href="/admin") Admin Panel
+            li
+                a(class='logout-btn') Logout
+        else 
+            li 
+                a(href="/login") Login
+            li 
+                a(href="/signup") Signup
+
 
     p.view-count Viewers: 
         span.count 0

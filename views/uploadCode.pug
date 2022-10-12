@@ -1,0 +1,17 @@
+extend base
+
+block content
+    .auth-container.animate__animated.animate__zoomIn
+        .auth-card 
+            h3 Upload Code
+            form.uploadCode-form
+                .form-control
+                    input(type='text' placeholder='Title' class='code-title' required)
+                .form-control
+                    select(name="code-lab" class='code-lab' required)
+                        each lab in labs
+                            option(value=lab._id)=lab.name
+                .form-control 
+                    textarea(type="text" placeholder="Code" class="code-content" rows="50" required)
+                .form-control
+                    button(type='submit' class='uploadCode-btn') Upload

@@ -1,0 +1,21 @@
+extends base
+
+block content
+    main.labs
+        .code-header 
+            button.code-header-btn.back-btn(onclick="window.history.back()") 
+                img(src="/icons/back.png", alt="copy")
+            h1 #{lab.name}
+            .code-header-btns
+                button.code-header-btn.code-info-btn
+                    img(src="/icons/info.png", alt="info")
+        .code-info.animate__animated.animate__fadeIn
+            p Description : #{lab.info}
+            p Created On : #{lab.createdAt.toLocaleDateString()} at #{lab.createdAt.toLocaleTimeString({}, { hour12: true, hour: 'numeric', minute: 'numeric' })}
+        if codes.length == 0
+            p Sorry Nothing Here!
+        else
+            .lab-block
+                each code in codes
+                    a(href="/labs/codes/"+code._id).sem-block.animate__animated.animate__fadeInRight
+                        p.sem-title.animate__animated.animate__fadeInLeftBig=code.title     

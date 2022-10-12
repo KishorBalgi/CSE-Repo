@@ -1,0 +1,20 @@
+extends base
+
+block content
+    main.lab-code
+        .code-header 
+            button.code-header-btn.back-btn(onclick="window.history.back()") 
+                img(src="/icons/back.png", alt="copy")
+            h1 #{title}
+            .code-header-btns
+                button.code-header-btn.code-copy-btn
+                    img(src="/icons/copy.png", alt="copy")
+                button.code-header-btn.code-info-btn
+                    img(src="/icons/info.png", alt="info")
+        .code-info.animate__animated.animate__fadeIn
+            p Uploaded By: #{code.uploader.name}
+            p Uploaded On: #{code.uploadedAt.toLocaleDateString()} at #{code.uploadedAt.toLocaleTimeString({}, { hour12: true, hour: 'numeric', minute: 'numeric' })}
+            p Last Edited On: #{code.lastEdited.toLocaleDateString()} at #{code.lastEdited.toLocaleTimeString({}, { hour12: true, hour: 'numeric', minute: 'numeric' })}
+
+        pre 
+            code.code-container #{code.code} 
