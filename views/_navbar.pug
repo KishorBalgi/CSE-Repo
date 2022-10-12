@@ -26,10 +26,10 @@ nav.main-nav.animate__animated.animate__fadeIn
                 img(src=user.avatar class='avatar')
         li 
             a(href="/") Home
-        if user.role == "admin"
-            li 
-                a(href="/admin") Admin Panel
         if user 
+            if user.role == "admin"
+                li 
+                    a(href="/admin") Admin Panel
             li
                 a(class='logout-btn') Logout
         else 
