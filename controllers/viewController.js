@@ -85,6 +85,7 @@ exports.getLab = catchAsync(async (req, res, next) => {
     lab: req.params.labId,
   }).select("title _id");
   res.render("lab", {
+    title: lab.name,
     lab,
     codes,
   });

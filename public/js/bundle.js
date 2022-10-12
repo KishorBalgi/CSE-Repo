@@ -33964,7 +33964,7 @@ exports.updateProfile = updateProfile;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.uploadCode = exports.createLab = void 0;
+exports.uploadCode = exports.deleteLab = exports.deleteCode = exports.createLab = void 0;
 
 var _axios = _interopRequireDefault(require("axios"));
 
@@ -34105,9 +34105,105 @@ var uploadCode = /*#__PURE__*/function () {
   return function uploadCode(_x2) {
     return _ref2.apply(this, arguments);
   };
-}();
+}(); // Delete Code:
+
 
 exports.uploadCode = uploadCode;
+
+var deleteCode = /*#__PURE__*/function () {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(codeId, labId) {
+    var res;
+    return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            _context3.prev = 0;
+            _context3.next = 3;
+            return (0, _axios.default)({
+              method: "DELETE",
+              url: "/api/v1/admins/deleteCode/" + codeId
+            });
+
+          case 3:
+            res = _context3.sent;
+
+            if (res.status == 204) {
+              (0, _alert.alert)("success", "Code Deleted Successfully");
+              setTimeout(function () {
+                location.href = "/labs/" + labId;
+              }, 1000);
+            }
+
+            _context3.next = 10;
+            break;
+
+          case 7:
+            _context3.prev = 7;
+            _context3.t0 = _context3["catch"](0);
+            (0, _alert.alert)("error", _context3.t0.response.data.message);
+
+          case 10:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3, null, [[0, 7]]);
+  }));
+
+  return function deleteCode(_x3, _x4) {
+    return _ref3.apply(this, arguments);
+  };
+}(); // Delete Lab:
+
+
+exports.deleteCode = deleteCode;
+
+var deleteLab = /*#__PURE__*/function () {
+  var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(labId) {
+    var res;
+    return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            _context4.prev = 0;
+            _context4.next = 3;
+            return (0, _axios.default)({
+              method: "DELETE",
+              url: "/api/v1/admins/deleteLab/" + labId
+            });
+
+          case 3:
+            res = _context4.sent;
+
+            if (res.status == 204) {
+              (0, _alert.alert)("success", "Lab Deleted Successfully");
+              setTimeout(function () {
+                location.href = "/labs";
+              }, 1000);
+            }
+
+            _context4.next = 10;
+            break;
+
+          case 7:
+            _context4.prev = 7;
+            _context4.t0 = _context4["catch"](0);
+            (0, _alert.alert)("error", _context4.t0.response.data.message);
+
+          case 10:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4, null, [[0, 7]]);
+  }));
+
+  return function deleteLab(_x5) {
+    return _ref4.apply(this, arguments);
+  };
+}();
+
+exports.deleteLab = deleteLab;
 },{"axios":"../../node_modules/axios/index.js","./alert":"alert.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
@@ -34483,6 +34579,28 @@ var uploadCodeForm = document.querySelector(".uploadCode-form");
 
 if (uploadCodeForm) {
   uploadCodeForm.addEventListener("submit", _admin.uploadCode);
+} // Delete Code:
+
+
+var deleteCodeBtn = document.querySelector(".code-delete-btn");
+
+if (deleteCodeBtn) {
+  var codeId = deleteCodeBtn.getAttribute("data-id");
+  var labId = deleteCodeBtn.getAttribute("data-lab");
+  deleteCodeBtn.addEventListener("click", function () {
+    return (0, _admin.deleteCode)(codeId, labId);
+  });
+} // Delete Lab:
+
+
+var deleteLabBtn = document.querySelector(".lab-delete-btn");
+
+if (deleteLabBtn) {
+  var _labId = deleteLabBtn.getAttribute("data-id");
+
+  deleteLabBtn.addEventListener("click", function () {
+    return (0, _admin.deleteLab)(_labId);
+  });
 } // Code info panel:
 
 
@@ -34555,7 +34673,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59326" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58440" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

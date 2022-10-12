@@ -58,3 +58,39 @@ export const uploadCode = async (e) => {
   uploadCodeBtn.innerHTML = "Upload";
   uploadCodeBtn.disabled = false;
 };
+
+// Delete Code:
+export const deleteCode = async (codeId, labId) => {
+  try {
+    const res = await axios({
+      method: "DELETE",
+      url: "/api/v1/admins/deleteCode/" + codeId,
+    });
+    if (res.status == 204) {
+      alert("success", "Code Deleted Successfully");
+      setTimeout(() => {
+        location.href = "/labs/" + labId;
+      }, 1000);
+    }
+  } catch (err) {
+    alert("error", err.response.data.message);
+  }
+};
+
+// Delete Lab:
+export const deleteLab = async (labId) => {
+  try {
+    const res = await axios({
+      method: "DELETE",
+      url: "/api/v1/admins/deleteLab/" + labId,
+    });
+    if (res.status == 204) {
+      alert("success", "Lab Deleted Successfully");
+      setTimeout(() => {
+        location.href = "/labs";
+      }, 1000);
+    }
+  } catch (err) {
+    alert("error", err.response.data.message);
+  }
+};

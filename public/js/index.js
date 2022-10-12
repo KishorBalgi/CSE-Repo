@@ -4,7 +4,7 @@ import "highlight.js/styles/tokyo-night-dark.css";
 import { alert } from "./alert";
 import { signup, login, logout, changePassword, deleteAccount } from "./auth";
 import { changeAvatar, updateProfile } from "./profile";
-import { createLab, uploadCode } from "./admin";
+import { createLab, uploadCode, deleteCode, deleteLab } from "./admin";
 let socket = io();
 const viewCount = document.querySelector(".view-count .count");
 
@@ -94,6 +94,20 @@ if (uploadCodeForm) {
   uploadCodeForm.addEventListener("submit", uploadCode);
 }
 
+// Delete Code:
+const deleteCodeBtn = document.querySelector(".code-delete-btn");
+if (deleteCodeBtn) {
+  const codeId = deleteCodeBtn.getAttribute("data-id");
+  const labId = deleteCodeBtn.getAttribute("data-lab");
+  deleteCodeBtn.addEventListener("click", () => deleteCode(codeId, labId));
+}
+
+// Delete Lab:
+const deleteLabBtn = document.querySelector(".lab-delete-btn");
+if (deleteLabBtn) {
+  const labId = deleteLabBtn.getAttribute("data-id");
+  deleteLabBtn.addEventListener("click", () => deleteLab(labId));
+}
 // Code info panel:
 
 const codeInfo = document.querySelector(".code-info-btn");

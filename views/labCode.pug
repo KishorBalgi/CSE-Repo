@@ -7,6 +7,11 @@ block content
                 img(src="/icons/back.png", alt="copy")
             h1 #{title}
             .code-header-btns
+                if user && user.role=="admin"
+                    button.code-header-btn.code-edit-btn
+                        img(src="/icons/edit.png", alt="edit")
+                    button.code-header-btn.code-delete-btn(data-id=`${code._id}` data-lab=`${code.lab._id}`)
+                        img(src="/icons/delete.png", alt="delete")
                 button.code-header-btn.code-copy-btn
                     img(src="/icons/copy.png", alt="copy")
                 button.code-header-btn.code-info-btn
