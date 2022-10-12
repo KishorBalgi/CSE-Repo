@@ -79,7 +79,7 @@ exports.getLabs = catchAsync(async (req, res, next) => {
 });
 
 exports.getLab = catchAsync(async (req, res, next) => {
-  const lab = await Lab.findById(req.params.labId);
+  const lab = await Lab.findById(req.params.labId).populate("createdBy");
   // find codes by labID:
   const codes = await Code.find({
     lab: req.params.labId,
@@ -99,6 +99,12 @@ exports.getLabCode = catchAsync(async (req, res, next) => {
 });
 
 // Admin:
+exports.getAdminPanel = catchAsync(async (req, res, next) => {
+  res.render("adminPanel", {
+    title: "Admin Dashbord",
+  });
+});
+
 exports.createLab = catchAsync(async (req, res, next) => {
   res.render("createLab", {
     title: "Create Lab",

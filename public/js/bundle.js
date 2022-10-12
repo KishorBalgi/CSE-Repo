@@ -34077,7 +34077,9 @@ var uploadCode = /*#__PURE__*/function () {
 
             if (res.data.status === "success") {
               (0, _alert.alert)("success", "Code Uploaded Successfully");
-              location.href = "/labs/codes/" + res.data.codeId;
+              setTimeout(function () {
+                location.href = "/labs/codes/" + res.data.codeId;
+              }, 500);
             }
 
             _context2.next = 18;
@@ -34387,7 +34389,6 @@ var _admin = require("./admin");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// import "highlight.js/styles/base16/darcula.css";
 var socket = io();
 var viewCount = document.querySelector(".view-count .count"); // Highlight code:
 
@@ -34554,7 +34555,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64766" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59326" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

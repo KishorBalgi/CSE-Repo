@@ -14,6 +14,11 @@ const labSchema = mongoose.Schema({
     type: String,
     required: [true, "Info is required"],
   },
+  createdBy: {
+    type: mongoose.Schema.ObjectId,
+    ref: "User",
+    required: true,
+  },
   createdAt: {
     type: Date,
     default: Date.now(),

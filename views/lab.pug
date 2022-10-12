@@ -11,6 +11,7 @@ block content
                     img(src="/icons/info.png", alt="info")
         .code-info.animate__animated.animate__fadeIn
             p Description : #{lab.info}
+            p Created By : #{lab.createdBy.name}
             p Created On : #{lab.createdAt.toLocaleDateString()} at #{lab.createdAt.toLocaleTimeString({}, { hour12: true, hour: 'numeric', minute: 'numeric' })}
         if codes.length == 0
             p Sorry Nothing Here!

@@ -11,6 +11,7 @@ exports.createLab = catchAsync(async (req, res, next) => {
   if (lab) {
     return next(new AppError(`Lab : ${lab.name} already exists`, 400));
   }
+  data.createdBy = req.user.id;
   //Create lab
   const newLab = await Lab.create(data);
   res.status(201).json({

@@ -22,7 +22,8 @@ Router.route("/profile/delete").get(viewController.getDeleteAccount);
 
 // Admins:
 Router.use(authController.restrictTo("admin"));
-Router.route("/admins/createLab").get(viewController.createLab);
-Router.route("/admins/uploadCode").get(viewController.uploadCode);
+Router.route("/admin/createLab").get(viewController.createLab);
+Router.route("/admin/uploadCode").get(viewController.uploadCode);
+Router.route("/admin").get(viewController.getAdminPanel);
 
 module.exports = Router;

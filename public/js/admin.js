@@ -48,7 +48,9 @@ export const uploadCode = async (e) => {
     });
     if (res.data.status === "success") {
       alert("success", "Code Uploaded Successfully");
-      location.href = "/labs/codes/" + res.data.codeId;
+      setTimeout(() => {
+        location.href = "/labs/codes/" + res.data.codeId;
+      }, 500);
     }
   } catch (err) {
     alert("error", err.response.data.message);
