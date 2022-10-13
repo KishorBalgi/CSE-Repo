@@ -23,10 +23,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   });
 
   document.querySelectorAll(".ecode-container").forEach((block) => {
-    // Highlight as plane text:
-    hljs.highlightElement(block, { language: "text" });
-
-    // hljs.highlightElement(block, { language: "plaintext" });
+    hljs.highlightElement(block);
     block.style.display = "block";
   });
 });

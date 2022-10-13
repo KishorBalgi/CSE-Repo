@@ -34605,11 +34605,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     block.style.display = "block";
   });
   document.querySelectorAll(".ecode-container").forEach(function (block) {
-    // Highlight as plane text:
-    _highlight.default.highlightElement(block, {
-      language: "text"
-    }); // hljs.highlightElement(block, { language: "plaintext" });
-
+    _highlight.default.highlightElement(block);
 
     block.style.display = "block";
   });
@@ -34814,7 +34810,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64762" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57843" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
