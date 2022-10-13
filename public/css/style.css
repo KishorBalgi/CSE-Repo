@@ -176,7 +176,7 @@ button {
 }
 /* Alert */
 .alert {
-  position: absolute;
+  position: fixed;
   top: 60px;
   left: 0;
   right: 0;
@@ -243,7 +243,8 @@ button {
   min-height: 100px;
   max-height: fit-content;
 }
-.auth-card button {
+.auth-card button,
+.editCode-form button {
   width: 80%;
   height: 40px;
   border-radius: 5px;
@@ -256,7 +257,8 @@ button {
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
-.auth-card button:hover {
+.auth-card button:hover,
+.editCode-form button:hover {
   background-color: #fff;
   color: var(--clr-foreground);
 }
@@ -365,13 +367,13 @@ button {
 }
 .sem-block {
   width: 100%;
-  margin: 10px;
+  margin: 5px 10px;
   background-color: var(--clr-foreground);
   border-radius: 10px;
-  padding: 20px;
+  padding: 10px 20px;
 }
 .sem-title {
-  font-size: 30px;
+  font-size: 25px;
   text-transform: capitalize;
 }
 .sem-labs {
@@ -444,7 +446,8 @@ button {
 .code-info p {
   margin: 5px 0;
 }
-.code-container {
+.code-container,
+.ecode-container {
   display: none;
   margin: 10px 0;
   border-radius: 10px;
@@ -452,6 +455,38 @@ button {
 }
 .show {
   display: block;
+}
+/* Edit Code */
+.editCode-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: fit-content;
+  background-color: var(--clr-foreground);
+  border-radius: 10px;
+  margin: 10px 0;
+  padding: 20px;
+}
+.editCode-form h3 {
+  margin-bottom: 20px;
+}
+.editCode-form input,
+.editCode-form select,
+.editCode-form textarea {
+  width: 100%;
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 0 10px;
+  margin: 10px auto;
+}
+.editCode-form textarea {
+  height: max-content;
+}
+.editCode-form button {
+  width: 200px;
+  float: right;
 }
 /* 404 */
 .error-page {

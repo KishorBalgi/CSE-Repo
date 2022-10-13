@@ -7,10 +7,16 @@ block content
                 img(src="/icons/back.png", alt="copy")
             h1 #{lab.name}
             .code-header-btns
+                if user && user.role=="admin"
+                    button.code-header-btn.lab-edit-btn(onclick=`window.location="/admin/editLab/${lab._id}"`)
+                        img(src="/icons/edit.png", alt="edit")
+                    button.code-header-btn.lab-delete-btn(data-id=`${lab._id}`)
+                        img(src="/icons/delete.png", alt="delete")
                 button.code-header-btn.code-info-btn
                     img(src="/icons/info.png", alt="info")
         .code-info.animate__animated.animate__fadeIn
             p Description : #{lab.info}
+            p Created By : #{lab.createdBy.name}
             p Created On : #{lab.createdAt.toLocaleDateString()} at #{lab.createdAt.toLocaleTimeString({}, { hour12: true, hour: 'numeric', minute: 'numeric' })}
         if codes.length == 0
             p Sorry Nothing Here!

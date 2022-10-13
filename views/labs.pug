@@ -10,12 +10,15 @@ block content
                 button.code-header-btn.code-info-btn
                     img(src="/icons/info.png", alt="info")
         .code-info.animate__animated.animate__fadeIn
-            p Find all the lab codes for all sems of BE Computer Science here.
-        each sem in sems
-            .sem-block.animate__animated.animate__fadeInRight
-                p.sem-title.animate__animated.animate__fadeInLeftBig="Sem-"+sem._id
-                .sem-labs
-                    each lab in sem.labs
-                        a(href="/labs/"+lab._id)
-                            .sem-lab
-                                p.lab-title=lab.name        
+            p Find all the lab codes for all semesters of BE Computer Science here.
+        if sems.length == 0
+            p Sorry Nothing Here!
+        else
+            each sem in sems
+                .sem-block.animate__animated.animate__fadeInRight
+                    p.sem-title.animate__animated.animate__fadeInLeftBig="Sem-"+sem._id
+                    .sem-labs
+                        each lab in sem.labs
+                            a(href="/labs/"+lab._id)
+                                .sem-lab
+                                    p.lab-title=lab.name        

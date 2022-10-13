@@ -79,12 +79,13 @@ exports.getLabs = catchAsync(async (req, res, next) => {
 });
 
 exports.getLab = catchAsync(async (req, res, next) => {
-  const lab = await Lab.findById(req.params.labId);
+  const lab = await Lab.findById(req.params.labId).populate("createdBy");
   // find codes by labID:
   const codes = await Code.find({
     lab: req.params.labId,
   }).select("title _id");
   res.render("lab", {
+    title: lab.name,
     lab,
     codes,
   });
@@ -99,6 +100,12 @@ exports.getLabCode = catchAsync(async (req, res, next) => {
 });
 
 // Admin:
+exports.getAdminPanel = catchAsync(async (req, res, next) => {
+  res.render("adminPanel", {
+    title: "Admin Dashbord",
+  });
+});
+
 exports.createLab = catchAsync(async (req, res, next) => {
   res.render("createLab", {
     title: "Create Lab",
@@ -110,5 +117,28 @@ exports.uploadCode = catchAsync(async (req, res, next) => {
   res.render("uploadCode", {
     title: "Upload Code",
     labs,
+  });
+});
+
+// Edit Code:
+exports.getEditCode = catchAsync(async (req, res, next) => {
+  const code = await Code.findById(req.params.codeId);
+  const labs = await Lab.find().sort({ name: 1 });
+
+  if (!code || !labs) return next(new AppError("Something Went Wrong", 404));
+  res.render("editCode", {
+    title: "Edit Code",
+    code,
+    labs,
+  });
+});
+
+// Edit Lab:
+exports.getEditLab = catchAsync(async (req, res, next) => {
+  const lab = await Lab.findById(req.params.labId);
+  if (!lab) return next(new AppError("Something went Wrong", 404));
+  res.render("editLab", {
+    title: "Edit Lab",
+    lab,
   });
 });

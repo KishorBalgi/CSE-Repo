@@ -4,15 +4,27 @@ import "highlight.js/styles/tokyo-night-dark.css";
 import { alert } from "./alert";
 import { signup, login, logout, changePassword, deleteAccount } from "./auth";
 import { changeAvatar, updateProfile } from "./profile";
-import { createLab, uploadCode } from "./admin";
+import {
+  createLab,
+  uploadCode,
+  editCode,
+  editLab,
+  deleteCode,
+  deleteLab,
+} from "./admin";
 let socket = io();
 const viewCount = document.querySelector(".view-count .count");
 
 // Highlight code:
 document.addEventListener("DOMContentLoaded", (event) => {
-  document.querySelectorAll("pre code").forEach((block) => {
-    block.style.display = "block";
+  document.querySelectorAll(".code-container").forEach((block) => {
     hljs.highlightElement(block);
+    block.style.display = "block";
+  });
+
+  document.querySelectorAll(".ecode-container").forEach((block) => {
+    hljs.highlightElement(block);
+    block.style.display = "block";
   });
 });
 
@@ -94,8 +106,36 @@ if (uploadCodeForm) {
   uploadCodeForm.addEventListener("submit", uploadCode);
 }
 
-// Code info panel:
+//Edit Code:
+const editCodeForm = document.querySelector(".editCode-form");
+if (editCodeForm) {
+  const codeId = editCodeForm.getAttribute("data-id");
+  editCodeForm.addEventListener("submit", (e) => editCode(e, codeId));
+}
 
+// Edit Lab:
+const editLabForm = document.querySelector(".editLab-form");
+if (editLabForm) {
+  const labId = editLabForm.getAttribute("data-id");
+  editLabForm.addEventListener("submit", (e) => editLab(e, labId));
+}
+
+// Delete Code:
+const deleteCodeBtn = document.querySelector(".code-delete-btn");
+if (deleteCodeBtn) {
+  const codeId = deleteCodeBtn.getAttribute("data-id");
+  const labId = deleteCodeBtn.getAttribute("data-lab");
+  deleteCodeBtn.addEventListener("click", () => deleteCode(codeId, labId));
+}
+
+// Delete Lab:
+const deleteLabBtn = document.querySelector(".lab-delete-btn");
+if (deleteLabBtn) {
+  const labId = deleteLabBtn.getAttribute("data-id");
+  deleteLabBtn.addEventListener("click", () => deleteLab(labId));
+}
+
+// Code info panel:
 const codeInfo = document.querySelector(".code-info-btn");
 if (codeInfo) {
   codeInfo.addEventListener("click", (event) => {
