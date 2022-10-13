@@ -77,6 +77,56 @@ export const deleteCode = async (codeId, labId) => {
   }
 };
 
+// Edit Code:
+export const editCode = async (e, codeId) => {
+  e.preventDefault();
+  const data = {
+    title: document.querySelector(".ecode-title").value,
+    lab: document.querySelector(".ecode-lab").value,
+    code: document.querySelector(".ecode-container").innerText,
+  };
+  try {
+    const res = await axios({
+      method: "PATCH",
+      url: "/api/v1/admins/editCode/" + codeId,
+      data,
+    });
+    if (res.data.status === "success") {
+      alert("success", "Code Successfully Updated");
+      setTimeout(() => {
+        location.href = "/labs/codes/" + codeId;
+      }, 1000);
+    }
+  } catch (err) {
+    alert("error", err.response.data.message);
+  }
+};
+
+// Edit Lab:
+export const editLab = async (e, labId) => {
+  e.preventDefault();
+  const data = {
+    name: document.querySelector(".elab-name").value,
+    semester: document.querySelector(".elab-semester").value,
+    info: document.querySelector(".elab-info").value,
+  };
+  try {
+    const res = await axios({
+      method: "PATCH",
+      url: "/api/v1/admins/editLab/" + labId,
+      data,
+    });
+    if (res.data.status === "success") {
+      alert("success", "Lab Successfully Updated");
+      setTimeout(() => {
+        location.href = "/labs/" + labId;
+      }, 1000);
+    }
+  } catch (err) {
+    alert("error", err.response.data.message);
+  }
+};
+
 // Delete Lab:
 export const deleteLab = async (labId) => {
   try {

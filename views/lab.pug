@@ -8,7 +8,7 @@ block content
             h1 #{lab.name}
             .code-header-btns
                 if user && user.role=="admin"
-                    button.code-header-btn.lab-edit-btn
+                    button.code-header-btn.lab-edit-btn(onclick=`window.location="/admin/editLab/${lab._id}"`)
                         img(src="/icons/edit.png", alt="edit")
                     button.code-header-btn.lab-delete-btn(data-id=`${lab._id}`)
                         img(src="/icons/delete.png", alt="delete")

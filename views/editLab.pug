@@ -1,0 +1,23 @@
+extend base
+
+block content
+    .auth-container.animate__animated.animate__zoomIn
+        .auth-card 
+            h3 Edit Lab
+            form.editLab-form(data-id=`${lab._id}`)
+                .form-control
+                    input(type='text' placeholder='Lab Name' class='elab-name' value=`${lab.name}` required)
+                .form-control
+                    select(name="Semester" class='elab-semester' required)
+                        option(value="1" selected=(lab.semester==1)) First 
+                        option(value="2" selected=(lab.semester==2)) Second
+                        option(value="3" selected=(lab.semester==3)) Third
+                        option(value="4" selected=(lab.semester==4)) Fourth
+                        option(value="5" selected=(lab.semester==5)) Fifth
+                        option(value="6" selected=(lab.semester==6)) Sixth
+                        option(value="7" selected=(lab.semester==7)) Seventh
+                        option(value="8" selected=(lab.semester==8)) Eigth
+                .form-control
+                    input(type='text' placeholder='Lab Description' class='elab-info' value=`${lab.info}` required)
+                .form-control
+                    button(type='submit' class='editLab-btn') Update

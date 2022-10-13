@@ -53,6 +53,37 @@ exports.uploadCode = catchAsync(async (req, res, next) => {
   });
 });
 
+// Edit Code:
+exports.editCode = catchAsync(async (req, res, next) => {
+  const data = req.body;
+  const id = req.params.codeId;
+  // Check if code exists:
+  const code = await Code.findById(id);
+  if (!code) {
+    return next(new AppError(`Code not found!`, 404));
+  }
+  data.lastEdited = Date.now();
+  await code.updateOne(data);
+  res.status(200).json({
+    status: "success",
+  });
+});
+
+// Edit Lab:
+exports.editLab = catchAsync(async (req, res, next) => {
+  const data = req.body;
+  const id = req.params.labId;
+  // Check if LAB  exists:
+  const lab = await Lab.findById(id);
+  if (!lab) {
+    return next(new AppError(`Lab not found!`, 404));
+  }
+  const updatedLab = await lab.updateOne(data);
+  res.status(200).json({
+    status: "success",
+  });
+});
+
 // Delete code:
 exports.deleteCode = catchAsync(async (req, res, next) => {
   const code = await Code.findByIdAndDelete(req.params.codeId);

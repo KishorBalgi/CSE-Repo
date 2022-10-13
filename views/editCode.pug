@@ -5,11 +5,9 @@ block content
         .code-header 
             button.code-header-btn.back-btn(onclick="window.history.back()") 
                 img(src="/icons/back.png", alt="copy")
-            h1 #{title}
+            h1 #{title} | #{code.title}
             .code-header-btns
                 if user && user.role=="admin"
-                    button.code-header-btn.code-edit-btn(onclick=`window.location="/admin/editCode/${code._id}"`)
-                        img(src="/icons/edit.png", alt="edit")
                     button.code-header-btn.code-delete-btn(data-id=`${code._id}` data-lab=`${code.lab._id}`)
                         img(src="/icons/delete.png", alt="delete")
                 button.code-header-btn.code-copy-btn
@@ -21,5 +19,17 @@ block content
             p Uploaded On: #{code.uploadedAt.toLocaleDateString()} at #{code.uploadedAt.toLocaleTimeString({}, { hour12: true, hour: 'numeric', minute: 'numeric' })}
             p Last Edited On: #{code.lastEdited.toLocaleDateString()} at #{code.lastEdited.toLocaleTimeString({}, { hour12: true, hour: 'numeric', minute: 'numeric' })}
 
-        pre 
-            code.code-container #{code.code} 
+        .edit-container.animate__animated.animate__fadeIn
+            form.editCode-form(data-id=`${code._id}`)
+                h3 Update Code
+                .form-control
+                    input(type='text' placeholder='Title' class='ecode-title' value=`${code.title}` required)
+                .form-control
+                    select(name="code-lab" class='ecode-lab' required)
+                        each lab in labs
+                            option(value=lab._id selected=(lab.id == code.lab))=lab.name
+                pre 
+                    code.ecode-container.language-plaintext(contenteditable="true") #{code.code} 
+
+                .form-control
+                    button(type='submit' class='updateCode-btn') Update

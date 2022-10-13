@@ -33964,7 +33964,7 @@ exports.updateProfile = updateProfile;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.uploadCode = exports.deleteLab = exports.deleteCode = exports.createLab = void 0;
+exports.uploadCode = exports.editLab = exports.editCode = exports.deleteLab = exports.deleteCode = exports.createLab = void 0;
 
 var _axios = _interopRequireDefault(require("axios"));
 
@@ -34153,27 +34153,137 @@ var deleteCode = /*#__PURE__*/function () {
   return function deleteCode(_x3, _x4) {
     return _ref3.apply(this, arguments);
   };
-}(); // Delete Lab:
+}(); // Edit Code:
 
 
 exports.deleteCode = deleteCode;
 
-var deleteLab = /*#__PURE__*/function () {
-  var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(labId) {
-    var res;
+var editCode = /*#__PURE__*/function () {
+  var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(e, codeId) {
+    var data, res;
     return _regeneratorRuntime().wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
-            _context4.prev = 0;
-            _context4.next = 3;
+            e.preventDefault();
+            data = {
+              title: document.querySelector(".ecode-title").value,
+              lab: document.querySelector(".ecode-lab").value,
+              code: document.querySelector(".ecode-container").innerText
+            };
+            _context4.prev = 2;
+            _context4.next = 5;
+            return (0, _axios.default)({
+              method: "PATCH",
+              url: "/api/v1/admins/editCode/" + codeId,
+              data: data
+            });
+
+          case 5:
+            res = _context4.sent;
+
+            if (res.data.status === "success") {
+              (0, _alert.alert)("success", "Code Successfully Updated");
+              setTimeout(function () {
+                location.href = "/labs/codes/" + codeId;
+              }, 1000);
+            }
+
+            _context4.next = 12;
+            break;
+
+          case 9:
+            _context4.prev = 9;
+            _context4.t0 = _context4["catch"](2);
+            (0, _alert.alert)("error", _context4.t0.response.data.message);
+
+          case 12:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4, null, [[2, 9]]);
+  }));
+
+  return function editCode(_x5, _x6) {
+    return _ref4.apply(this, arguments);
+  };
+}(); // Edit Lab:
+
+
+exports.editCode = editCode;
+
+var editLab = /*#__PURE__*/function () {
+  var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(e, labId) {
+    var data, res;
+    return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            e.preventDefault();
+            data = {
+              name: document.querySelector(".elab-name").value,
+              semester: document.querySelector(".elab-semester").value,
+              info: document.querySelector(".elab-info").value
+            };
+            _context5.prev = 2;
+            _context5.next = 5;
+            return (0, _axios.default)({
+              method: "PATCH",
+              url: "/api/v1/admins/editLab/" + labId,
+              data: data
+            });
+
+          case 5:
+            res = _context5.sent;
+
+            if (res.data.status === "success") {
+              (0, _alert.alert)("success", "Lab Successfully Updated");
+              setTimeout(function () {
+                location.href = "/labs/" + labId;
+              }, 1000);
+            }
+
+            _context5.next = 12;
+            break;
+
+          case 9:
+            _context5.prev = 9;
+            _context5.t0 = _context5["catch"](2);
+            (0, _alert.alert)("error", _context5.t0.response.data.message);
+
+          case 12:
+          case "end":
+            return _context5.stop();
+        }
+      }
+    }, _callee5, null, [[2, 9]]);
+  }));
+
+  return function editLab(_x7, _x8) {
+    return _ref5.apply(this, arguments);
+  };
+}(); // Delete Lab:
+
+
+exports.editLab = editLab;
+
+var deleteLab = /*#__PURE__*/function () {
+  var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(labId) {
+    var res;
+    return _regeneratorRuntime().wrap(function _callee6$(_context6) {
+      while (1) {
+        switch (_context6.prev = _context6.next) {
+          case 0:
+            _context6.prev = 0;
+            _context6.next = 3;
             return (0, _axios.default)({
               method: "DELETE",
               url: "/api/v1/admins/deleteLab/" + labId
             });
 
           case 3:
-            res = _context4.sent;
+            res = _context6.sent;
 
             if (res.status == 204) {
               (0, _alert.alert)("success", "Lab Deleted Successfully");
@@ -34182,24 +34292,24 @@ var deleteLab = /*#__PURE__*/function () {
               }, 1000);
             }
 
-            _context4.next = 10;
+            _context6.next = 10;
             break;
 
           case 7:
-            _context4.prev = 7;
-            _context4.t0 = _context4["catch"](0);
-            (0, _alert.alert)("error", _context4.t0.response.data.message);
+            _context6.prev = 7;
+            _context6.t0 = _context6["catch"](0);
+            (0, _alert.alert)("error", _context6.t0.response.data.message);
 
           case 10:
           case "end":
-            return _context4.stop();
+            return _context6.stop();
         }
       }
-    }, _callee4, null, [[0, 7]]);
+    }, _callee6, null, [[0, 7]]);
   }));
 
-  return function deleteLab(_x5) {
-    return _ref4.apply(this, arguments);
+  return function deleteLab(_x9) {
+    return _ref6.apply(this, arguments);
   };
 }();
 
@@ -34489,10 +34599,19 @@ var socket = io();
 var viewCount = document.querySelector(".view-count .count"); // Highlight code:
 
 document.addEventListener("DOMContentLoaded", function (event) {
-  document.querySelectorAll("pre code").forEach(function (block) {
-    block.style.display = "block";
-
+  document.querySelectorAll(".code-container").forEach(function (block) {
     _highlight.default.highlightElement(block);
+
+    block.style.display = "block";
+  });
+  document.querySelectorAll(".ecode-container").forEach(function (block) {
+    // Highlight as plane text:
+    _highlight.default.highlightElement(block, {
+      language: "text"
+    }); // hljs.highlightElement(block, { language: "plaintext" });
+
+
+    block.style.display = "block";
   });
 }); // Copy code to clipBoard:
 
@@ -34579,16 +34698,38 @@ var uploadCodeForm = document.querySelector(".uploadCode-form");
 
 if (uploadCodeForm) {
   uploadCodeForm.addEventListener("submit", _admin.uploadCode);
+} //Edit Code:
+
+
+var editCodeForm = document.querySelector(".editCode-form");
+
+if (editCodeForm) {
+  var codeId = editCodeForm.getAttribute("data-id");
+  editCodeForm.addEventListener("submit", function (e) {
+    return (0, _admin.editCode)(e, codeId);
+  });
+} // Edit Lab:
+
+
+var editLabForm = document.querySelector(".editLab-form");
+
+if (editLabForm) {
+  var labId = editLabForm.getAttribute("data-id");
+  editLabForm.addEventListener("submit", function (e) {
+    return (0, _admin.editLab)(e, labId);
+  });
 } // Delete Code:
 
 
 var deleteCodeBtn = document.querySelector(".code-delete-btn");
 
 if (deleteCodeBtn) {
-  var codeId = deleteCodeBtn.getAttribute("data-id");
-  var labId = deleteCodeBtn.getAttribute("data-lab");
+  var _codeId = deleteCodeBtn.getAttribute("data-id");
+
+  var _labId = deleteCodeBtn.getAttribute("data-lab");
+
   deleteCodeBtn.addEventListener("click", function () {
-    return (0, _admin.deleteCode)(codeId, labId);
+    return (0, _admin.deleteCode)(_codeId, _labId);
   });
 } // Delete Lab:
 
@@ -34596,10 +34737,10 @@ if (deleteCodeBtn) {
 var deleteLabBtn = document.querySelector(".lab-delete-btn");
 
 if (deleteLabBtn) {
-  var _labId = deleteLabBtn.getAttribute("data-id");
+  var _labId2 = deleteLabBtn.getAttribute("data-id");
 
   deleteLabBtn.addEventListener("click", function () {
-    return (0, _admin.deleteLab)(_labId);
+    return (0, _admin.deleteLab)(_labId2);
   });
 } // Code info panel:
 
@@ -34673,7 +34814,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58440" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64762" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

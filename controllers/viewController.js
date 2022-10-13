@@ -119,3 +119,26 @@ exports.uploadCode = catchAsync(async (req, res, next) => {
     labs,
   });
 });
+
+// Edit Code:
+exports.getEditCode = catchAsync(async (req, res, next) => {
+  const code = await Code.findById(req.params.codeId);
+  const labs = await Lab.find().sort({ name: 1 });
+
+  if (!code || !labs) return next(new AppError("Something Went Wrong", 404));
+  res.render("editCode", {
+    title: "Edit Code",
+    code,
+    labs,
+  });
+});
+
+// Edit Lab:
+exports.getEditLab = catchAsync(async (req, res, next) => {
+  const lab = await Lab.findById(req.params.labId);
+  if (!lab) return next(new AppError("Something went Wrong", 404));
+  res.render("editLab", {
+    title: "Edit Lab",
+    lab,
+  });
+});
