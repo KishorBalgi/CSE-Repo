@@ -5,7 +5,7 @@ block content
         .code-header 
             button.code-header-btn.back-btn(onclick="window.history.back()") 
                 img(src="/icons/back.png", alt="copy")
-            h1 #{title} | #{code.title}
+            h1 #{code.title}
             .code-header-btns
                 if user && user.role=="admin"
                     button.code-header-btn.code-delete-btn(data-id=`${code._id}` data-lab=`${code.lab._id}`)

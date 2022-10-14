@@ -6,6 +6,12 @@ nav.main-nav.animate__animated.animate__fadeIn
     ul.main-menu
         li 
             a(href="/") Home
+        
+        li 
+            a(href="https://drive.google.com/drive/folders/1s6LiRwgqN7AHO2xkRoTFVpQi4Bv7uo7E?usp=sharin" target="_blank") Notes
+
+        li 
+            a(href="/labs") Labs
         if user 
             if user.role == "admin"
                 li 
@@ -26,6 +32,13 @@ nav.main-nav.animate__animated.animate__fadeIn
                 img(src=user.avatar class='avatar')
         li 
             a(href="/") Home
+
+        li 
+            a(href="https://drive.google.com/drive/folders/1s6LiRwgqN7AHO2xkRoTFVpQi4Bv7uo7E?usp=sharin" target="_blank") Notes
+
+        li 
+            a(href="/labs") Labs
+            
         if user 
             if user.role == "admin"
                 li 
