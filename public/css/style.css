@@ -642,6 +642,11 @@ main {
   .mob-menu-btn {
     display: block;
   }
+  .lab-block {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin: 10px 0;
+  }
 }
 @media screen and (max-width: 590px) {
   .auth-card {
@@ -687,5 +692,11 @@ main {
   .ecode-container::-webkit-scrollbar {
     width: 5px;
     height: 5px;
+  }
+  .sem-title {
+    font-size: 18px;
+  }
+  .sem-lab {
+    padding: 10px;
   }
 }
