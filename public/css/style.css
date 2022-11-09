@@ -574,6 +574,7 @@ main {
 .footer__copyright {
   font-size: 17px;
   text-align: center;
+  display: inline-block;
 }
 
 /* Media Queries */
