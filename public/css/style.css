@@ -36,6 +36,9 @@ select option {
 button {
   font-family: "Silkscreen", cursive;
 }
+main {
+  padding-top: 25px;
+}
 /* Scroll Bar*/
 ::-webkit-scrollbar {
   width: 12px;
@@ -571,6 +574,7 @@ button {
 .footer__copyright {
   font-size: 17px;
   text-align: center;
+  display: inline-block;
 }
 
 /* Media Queries */
@@ -595,6 +599,11 @@ button {
   }
   .alert-msg {
     font-size: 14px;
+  }
+}
+@media screen and (max-width: 940px) {
+  .sem-labs {
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 @media screen and (max-width: 880px) {
@@ -622,8 +631,9 @@ button {
   .alert {
     width: 90%;
   }
-}
-@media screen and (max-width: 590px) {
+  .code-header h1 {
+    font-size: 20px;
+  }
   .main-nav h1 {
     font-size: 20px;
   }
@@ -633,10 +643,61 @@ button {
   .mob-menu-btn {
     display: block;
   }
+  .lab-block {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin: 10px 0;
+  }
+}
+@media screen and (max-width: 590px) {
   .auth-card {
     width: 90%;
   }
   .have-account-item {
     font-size: 12px;
+  }
+  .labs,
+  .lab-code {
+    width: 90%;
+  }
+  .code-header-btn img {
+    width: 25px;
+    height: 25px;
+  }
+  .code-header {
+    padding: 10px 5px;
+  }
+  .lab-code .code-header {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .lab-code .code-header .back-btn {
+    justify-self: left;
+  }
+  .lab-code .code-header h1 {
+    justify-self: right;
+    padding: 0 10px 0 0;
+  }
+  .lab-code .code-header-btns {
+    grid-column: 1 / span 2;
+    margin-top: 10px;
+    background-color: var(--clr-background);
+    padding: 10px 5px;
+    border-radius: 10px;
+  }
+  .code-container,
+  .ecode-container {
+    margin: 0;
+  }
+  .code-container::-webkit-scrollbar,
+  .ecode-container::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  .sem-title {
+    font-size: 18px;
+  }
+  .sem-lab {
+    padding: 10px;
   }
 }
