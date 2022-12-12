@@ -19,7 +19,7 @@ block content
             p Created By : #{lab.createdBy.name}
             p Created On : #{lab.createdAt.toLocaleDateString()} at #{lab.createdAt.toLocaleTimeString({}, { hour12: true, hour: 'numeric', minute: 'numeric' })}
         if codes.length == 0
-            p Sorry Nothing Here!
+            p Wow such empty 💀
         else
             .lab-block
                 each code in codes
