@@ -8,7 +8,7 @@ const authController = require("../controllers/authController");
 Router.use(authController.isLoggedIn);
 Router.route("/").get(viewController.getIndex);
 Router.route("/login").get(viewController.getLogin);
-Router.route("/signup").get(viewController.getSignup);
+// Router.route("/signup").get(viewController.getSignup);
 Router.route("/labs").get(viewController.getLabs);
 Router.route("/labs/:labId").get(viewController.getLab);
 Router.route("/labs/codes/:codeId").get(viewController.getLabCode);
