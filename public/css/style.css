@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@100;300;400;600&display=swap");
 :root {
-  --clr-foreground: #333;
+  --clr-foreground: #802bb1;
   --clr-background: #000;
 }
 * {
@@ -9,8 +9,6 @@
   box-sizing: border-box;
 }
 body {
-  /* font-family: "Sigmar One", cursive; */
-  /* font-family: "Silkscreen", cursive; */
   font-family: "Chivo Mono", monospace;
   font-size: 14px;
   background: var(--clr-background);

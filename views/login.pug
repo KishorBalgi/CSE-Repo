@@ -4,6 +4,7 @@ block content
     .auth-container.animate__animated.animate__zoomIn
         .auth-card 
             h3 Log In
+            p(style="text-align: center") Only admins can login!
             form.login-form
                 .form-control
                     input(type='email' placeholder='E-Mail' class='login-email' required)
@@ -11,6 +12,6 @@ block content
                     input(type='password' placeholder='Password' class='login-password' required)
                 .form-control
                     button(type='submit' class='login-btn') Log In
-                .have-account-item
-                    p Don't have an account? &nbsp;
-                    a(href='/signup') Sign Up
+                //- .have-account-item
+                //-     p Don't have an account? &nbsp;
+                //-     a(href='/signup') Sign Up

@@ -15,8 +15,8 @@ block content
             p Wow such empty 💀
         else
             each sem in sems
-                .sem-block.animate__animated.animate__fadeInRight
-                    p.sem-title.animate__animated.animate__fadeInLeftBig="Sem-"+sem._id
+                .sem-block.animate__animated.animate__fadeIn 
+                    p.sem-title="Sem-"+sem._id
                     .sem-labs
                         each lab in sem.labs
                             a(href="/labs/"+lab._id)
