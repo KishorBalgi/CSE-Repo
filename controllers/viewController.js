@@ -12,6 +12,12 @@ exports.getIndex = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.getAbout = catchAsync(async (req, res, next) => {
+  res.render("about", {
+    title: "About",
+  });
+});
+
 exports.getLogin = catchAsync(async (req, res, next) => {
   if (res.locals.user) {
     return res.redirect("/");
