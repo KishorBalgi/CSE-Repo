@@ -40,6 +40,8 @@ exports.signup = catchAsync(async (req, res, next) => {
   if (user) {
     return next(new AppError("User already exists", 400));
   }
+
+  console.log(name, email, password);
   //   Create user:
   const newUser = await User.create({
     name,

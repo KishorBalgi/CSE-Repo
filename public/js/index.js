@@ -12,8 +12,8 @@ import {
   deleteCode,
   deleteLab,
 } from "./admin";
-let socket = io();
-const viewCount = document.querySelector(".view-count .count");
+// let socket = io();
+// const viewCount = document.querySelector(".view-count .count");
 
 // Highlight code:
 document.addEventListener("DOMContentLoaded", (event) => {
@@ -44,9 +44,9 @@ if (copyCodeBtn) {
   });
 }
 // Viewer count:
-socket.on("user-count-change", function (userCount) {
-  viewCount.innerHTML = userCount;
-});
+// socket.on("user-count-change", function (userCount) {
+//   viewCount.innerHTML = userCount;
+// });
 
 // Authentication:
 

@@ -33829,9 +33829,8 @@ var deleteAccount = /*#__PURE__*/function () {
           case 0:
             e.preventDefault();
             password = document.querySelector(".del-password").value;
-            console.log(password);
-            _context5.prev = 3;
-            _context5.next = 6;
+            _context5.prev = 2;
+            _context5.next = 5;
             return (0, _axios.default)({
               method: "DELETE",
               url: "/api/v1/users/account",
@@ -33840,26 +33839,26 @@ var deleteAccount = /*#__PURE__*/function () {
               }
             });
 
-          case 6:
+          case 5:
             res = _context5.sent;
             (0, _alert.alert)("success", "Your account has been deleted successfully");
             setTimeout(function () {
               logout(e);
             }, 1000);
-            _context5.next = 14;
+            _context5.next = 13;
             break;
 
-          case 11:
-            _context5.prev = 11;
-            _context5.t0 = _context5["catch"](3);
+          case 10:
+            _context5.prev = 10;
+            _context5.t0 = _context5["catch"](2);
             (0, _alert.alert)("error", _context5.t0.response.data.message);
 
-          case 14:
+          case 13:
           case "end":
             return _context5.stop();
         }
       }
-    }, _callee5, null, [[3, 11]]);
+    }, _callee5, null, [[2, 10]]);
   }));
 
   return function deleteAccount(_x5) {
@@ -34595,9 +34594,9 @@ var _admin = require("./admin");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var socket = io();
-var viewCount = document.querySelector(".view-count .count"); // Highlight code:
-
+// let socket = io();
+// const viewCount = document.querySelector(".view-count .count");
+// Highlight code:
 document.addEventListener("DOMContentLoaded", function (event) {
   document.querySelectorAll(".code-container").forEach(function (block) {
     _highlight.default.highlightElement(block);
@@ -34623,12 +34622,12 @@ if (copyCodeBtn) {
     });
   });
 } // Viewer count:
-
-
-socket.on("user-count-change", function (userCount) {
-  viewCount.innerHTML = userCount;
-}); // Authentication:
+// socket.on("user-count-change", function (userCount) {
+//   viewCount.innerHTML = userCount;
+// });
+// Authentication:
 // Signup:
+
 
 var signupForm = document.querySelector(".signup-form");
 
@@ -34810,7 +34809,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57843" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57822" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

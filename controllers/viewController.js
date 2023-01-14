@@ -18,6 +18,27 @@ exports.getAbout = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.getNotes = catchAsync(async (req, res, next) => {
+  res.render("_gdrive", {
+    title: "Notes",
+    link: "https://drive.google.com/embeddedfolderview?id=1s6LiRwgqN7AHO2xkRoTFVpQi4Bv7uo7E#grid",
+  });
+});
+
+exports.getPlacements = catchAsync(async (req, res, next) => {
+  res.render("_gdrive", {
+    title: "Placements",
+    link: "https://drive.google.com/embeddedfolderview?id=1-3iGG250VKl42zyOZYjxOKiS00zhVY6y#grid",
+  });
+});
+
+exports.getTextBooks = catchAsync(async (req, res, next) => {
+  res.render("_gdrive", {
+    title: "Text Books",
+    link: "https://drive.google.com/embeddedfolderview?id=1XgNHCQoJ9kU3JWVFS6_MllszmhR67Lr_#grid",
+  });
+});
+
 exports.getLogin = catchAsync(async (req, res, next) => {
   if (res.locals.user) {
     return res.redirect("/");

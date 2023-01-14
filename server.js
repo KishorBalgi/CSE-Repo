@@ -33,14 +33,14 @@ const server = app
     console.log(err);
   });
 
-const io = socket(server);
+// const io = socket(server);
 
-let onlineUsers = 0;
-io.on("connection", (socket) => {
-  onlineUsers++;
-  io.emit("user-count-change", onlineUsers);
-  socket.on("disconnect", () => {
-    onlineUsers--;
-    io.emit("user-count-change", onlineUsers);
-  });
-});
+// let onlineUsers = 0;
+// io.on("connection", (socket) => {
+//   onlineUsers++;
+//   io.emit("user-count-change", onlineUsers);
+//   socket.on("disconnect", () => {
+//     onlineUsers--;
+//     io.emit("user-count-change", onlineUsers);
+//   });
+// });

@@ -50,9 +50,6 @@ main {
   background: #333;
   border-radius: 50px;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: var(--clr-primary);
-}
 
 /* Nav */
 .main-nav {
@@ -391,6 +388,14 @@ main {
 .socials img {
   width: 30px;
   height: 30px;
+}
+/* G-Drive Embeded */
+.gdrive-iframe {
+  width: 100%;
+  min-height: 150vh;
+  margin: 70px 0;
+  border: none;
+  overflow: hidden;
 }
 /* Labs */
 .labs {

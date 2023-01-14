@@ -110,7 +110,6 @@ export const changePassword = async (e) => {
 export const deleteAccount = async (e) => {
   e.preventDefault();
   const password = document.querySelector(".del-password").value;
-  console.log(password);
   try {
     const res = await axios({
       method: "DELETE",
