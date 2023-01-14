@@ -12,6 +12,10 @@ Router.route("/login").get(viewController.getLogin);
 Router.route("/labs").get(viewController.getLabs);
 Router.route("/labs/:labId").get(viewController.getLab);
 Router.route("/labs/codes/:codeId").get(viewController.getLabCode);
+Router.route("/about").get(viewController.getAbout);
+Router.route("/notes").get(viewController.getNotes);
+Router.route("/placements").get(viewController.getPlacements);
+Router.route("/text-books").get(viewController.getTextBooks);
 
 // Protected Routes:
 Router.use(authController.protect);

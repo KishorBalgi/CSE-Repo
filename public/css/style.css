@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@100;300;400;600&display=swap");
 :root {
-  --clr-foreground: #404040;
+  --clr-foreground: #161b22;
   --clr-background: #000;
 }
 * {
@@ -49,9 +49,6 @@ main {
 ::-webkit-scrollbar-thumb {
   background: #333;
   border-radius: 50px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--clr-primary);
 }
 
 /* Nav */
@@ -160,9 +157,9 @@ main {
 }
 .card-container {
   width: 70vw;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 20px;
 }
 .card {
   display: grid;
@@ -359,6 +356,46 @@ main {
 }
 .btn-rand-avatar {
   margin: 30px 0 0 0;
+}
+/* About */
+#about {
+  width: 90%;
+  height: fit-content;
+  display: grid;
+  place-items: center;
+  margin: 100px auto;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: var(--clr-foreground);
+}
+.about-title {
+  margin: 10px 0;
+}
+.about-desc {
+  margin: 10px 0;
+  font-size: 18px;
+}
+.about-desc a {
+  color: rgb(36, 131, 255);
+}
+.socials {
+  margin: 10px 0;
+}
+.socials ul li {
+  display: inline-block;
+  margin: 0 10px;
+}
+.socials img {
+  width: 30px;
+  height: 30px;
+}
+/* G-Drive Embeded */
+.gdrive-iframe {
+  width: 100%;
+  min-height: 150vh;
+  margin: 70px 0;
+  border: none;
+  overflow: hidden;
 }
 /* Labs */
 .labs {
