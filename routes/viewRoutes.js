@@ -16,6 +16,7 @@ Router.route("/about").get(viewController.getAbout);
 Router.route("/notes").get(viewController.getNotes);
 Router.route("/placements").get(viewController.getPlacements);
 Router.route("/text-books").get(viewController.getTextBooks);
+Router.route("/contact").get(viewController.getContact);
 
 // Protected Routes:
 Router.use(authController.protect);
@@ -31,5 +32,9 @@ Router.route("/admin/createLab").get(viewController.createLab);
 Router.route("/admin/editLab/:labId").get(viewController.getEditLab);
 Router.route("/admin/uploadCode").get(viewController.uploadCode);
 Router.route("/admin/editCode/:codeId").get(viewController.getEditCode);
+Router.route("/admin/createDomain").get(viewController.createDomain);
+Router.route("/admin/editDomain/:domainId").get(viewController.getEditDomain);
+Router.route("/admin/addCourse").get(viewController.addCourse);
+Router.route("/admin/updateCourse/:courseId").get(viewController.getEditCourse);
 
 module.exports = Router;

@@ -169,3 +169,36 @@ exports.getEditLab = catchAsync(async (req, res, next) => {
     lab,
   });
 });
+
+// Courses:
+
+exports.createDomain = catchAsync(async (req, res, next) => {
+  res.render("index", {
+    title: "Create Domain",
+  });
+});
+
+exports.getEditDomain = catchAsync(async (req, res, next) => {
+  res.render("index", {
+    title: "Edit Domain",
+  });
+});
+
+exports.addCourse = catchAsync(async (req, res, next) => {
+  res.render("index", {
+    title: "Add Course",
+  });
+});
+
+exports.getEditCourse = catchAsync(async (req, res, next) => {
+  res.render("index", {
+    title: "Edit Course",
+  });
+});
+
+// Contact:
+exports.getContact = catchAsync(async (req, res, next) => {
+  res.render("contact", {
+    title: "Contact",
+  });
+});

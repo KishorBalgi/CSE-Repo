@@ -224,6 +224,9 @@ main {
   font-size: 18px;
   margin: 10px 0;
 }
+.auth-card p {
+  margin: 10px 20px;
+}
 .auth-card .form-control {
   width: 100%;
   display: flex;

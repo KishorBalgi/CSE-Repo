@@ -33563,7 +33563,7 @@ module.exports = require('./lib/axios');
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.signup = exports.logout = exports.login = exports.deleteAccount = exports.changePassword = void 0;
+exports.signup = exports.logout = exports.login = exports.deleteAccount = exports.contact = exports.changePassword = void 0;
 
 var _axios = _interopRequireDefault(require("axios"));
 
@@ -33864,9 +33864,65 @@ var deleteAccount = /*#__PURE__*/function () {
   return function deleteAccount(_x5) {
     return _ref5.apply(this, arguments);
   };
-}();
+}(); // Contact:
+
 
 exports.deleteAccount = deleteAccount;
+
+var contact = /*#__PURE__*/function () {
+  var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(e) {
+    var name, email, message, data, res;
+    return _regeneratorRuntime().wrap(function _callee6$(_context6) {
+      while (1) {
+        switch (_context6.prev = _context6.next) {
+          case 0:
+            e.preventDefault();
+            name = document.querySelector(".contact-name").value;
+            email = document.querySelector(".contact-email").value;
+            message = document.querySelector(".contact-message").value;
+            data = {
+              name: name,
+              email: email,
+              message: message
+            };
+            _context6.prev = 5;
+            _context6.next = 8;
+            return (0, _axios.default)({
+              method: "POST",
+              url: "/api/v1/users/contact",
+              data: data
+            });
+
+          case 8:
+            res = _context6.sent;
+
+            if (res.data.status === "success") {
+              (0, _alert.alert)("success", "Message Sent Successfully");
+              document.querySelector(".contact-form").reset();
+            }
+
+            _context6.next = 15;
+            break;
+
+          case 12:
+            _context6.prev = 12;
+            _context6.t0 = _context6["catch"](5);
+            (0, _alert.alert)("error", _context6.t0.response.data.message);
+
+          case 15:
+          case "end":
+            return _context6.stop();
+        }
+      }
+    }, _callee6, null, [[5, 12]]);
+  }));
+
+  return function contact(_x6) {
+    return _ref6.apply(this, arguments);
+  };
+}();
+
+exports.contact = contact;
 },{"axios":"../../node_modules/axios/index.js","./alert":"alert.js"}],"profile.js":[function(require,module,exports) {
 "use strict";
 
@@ -34737,6 +34793,13 @@ if (deleteLabBtn) {
   deleteLabBtn.addEventListener("click", function () {
     return (0, _admin.deleteLab)(_labId2);
   });
+} // Contact:
+
+
+var contactForm = document.querySelector(".contact-form");
+
+if (contactForm) {
+  contactForm.addEventListener("submit", _auth.contact);
 } // Code info panel:
 
 
@@ -34809,7 +34872,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57822" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61948" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
