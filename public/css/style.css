@@ -160,6 +160,7 @@ main {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 20px;
+  place-items: center;
 }
 .card {
   display: grid;
@@ -226,6 +227,8 @@ main {
 }
 .auth-card p {
   margin: 10px 20px;
+  text-align: center;
+  line-height: 20px;
 }
 .auth-card .form-control {
   width: 100%;

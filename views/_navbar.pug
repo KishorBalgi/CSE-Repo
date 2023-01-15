@@ -12,10 +12,8 @@ nav.main-nav.animate__animated.animate__fadeIn
             a(href="/about") About
         
         li 
-            a(href="/notes") Notes
-
-        li 
-            a(href="/labs") Labs
+            a(href="/contact") Contact
+            
         if user 
             if user.role == "admin"
                 li 
@@ -39,13 +37,16 @@ nav.main-nav.animate__animated.animate__fadeIn
             a(href="/") Home
 
         li 
-            a(href="/about") About
-
-        li 
             a(href="/notes") Notes
 
         li 
             a(href="/labs") Labs
+
+        li 
+            a(href="/about") About
+
+        li 
+            a(href="/contact") Contact
             
         if user 
             if user.role == "admin"
