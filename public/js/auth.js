@@ -124,3 +124,25 @@ export const deleteAccount = async (e) => {
     alert("error", err.response.data.message);
   }
 };
+
+// Contact:
+export const contact = async (e) => {
+  e.preventDefault();
+  const name = document.querySelector(".contact-name").value;
+  const email = document.querySelector(".contact-email").value;
+  const message = document.querySelector(".contact-message").value;
+  const data = { name, email, message };
+  try {
+    const res = await axios({
+      method: "POST",
+      url: "/api/v1/users/contact",
+      data,
+    });
+    if (res.data.status === "success") {
+      alert("success", "Message Sent Successfully");
+      document.querySelector(".contact-form").reset();
+    }
+  } catch (err) {
+    alert("error", err.response.data.message);
+  }
+}

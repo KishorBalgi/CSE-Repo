@@ -2,7 +2,14 @@ import "@babel/polyfill";
 import hljs from "highlight.js";
 import "highlight.js/styles/tokyo-night-dark.css";
 import { alert } from "./alert";
-import { signup, login, logout, changePassword, deleteAccount } from "./auth";
+import {
+  signup,
+  login,
+  logout,
+  changePassword,
+  deleteAccount,
+  contact,
+} from "./auth";
 import { changeAvatar, updateProfile } from "./profile";
 import {
   createLab,
@@ -133,6 +140,12 @@ const deleteLabBtn = document.querySelector(".lab-delete-btn");
 if (deleteLabBtn) {
   const labId = deleteLabBtn.getAttribute("data-id");
   deleteLabBtn.addEventListener("click", () => deleteLab(labId));
+}
+
+// Contact:
+const contactForm = document.querySelector(".contact-form");
+if (contactForm) {
+  contactForm.addEventListener("submit", contact);
 }
 
 // Code info panel:

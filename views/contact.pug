@@ -1,0 +1,16 @@
+extend base
+
+block content
+    .auth-container.animate__animated.animate__zoomIn
+        .auth-card 
+            h3 Contact Us
+            p We are always happy😄 to hear from you. Please feel free to contact us with any suggestions, queries or to report bugs🪲.
+            form.contact-form
+                .form-control
+                    input(type='text' placeholder='Name' class='contact-name' required)
+                .form-control 
+                    input(type="email" placeholder="Email" class="contact-email" required)
+                .form-control 
+                    textarea(type="text" placeholder="Your Message" class="contact-message" rows="50" required)
+                .form-control
+                    button(type='submit' class='sendMessage-btn') Send

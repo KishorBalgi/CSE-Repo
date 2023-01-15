@@ -16,6 +16,7 @@ Router.route("/about").get(viewController.getAbout);
 Router.route("/notes").get(viewController.getNotes);
 Router.route("/placements").get(viewController.getPlacements);
 Router.route("/text-books").get(viewController.getTextBooks);
+Router.route("/contact").get(viewController.getContact);
 
 // Protected Routes:
 Router.use(authController.protect);

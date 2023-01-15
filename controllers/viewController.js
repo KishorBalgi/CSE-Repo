@@ -195,3 +195,10 @@ exports.getEditCourse = catchAsync(async (req, res, next) => {
     title: "Edit Course",
   });
 });
+
+// Contact:
+exports.getContact = catchAsync(async (req, res, next) => {
+  res.render("contact", {
+    title: "Contact",
+  });
+});
