@@ -33901,15 +33901,16 @@ var contact = /*#__PURE__*/function () {
               document.querySelector(".contact-form").reset();
             }
 
-            _context6.next = 15;
+            _context6.next = 16;
             break;
 
           case 12:
             _context6.prev = 12;
             _context6.t0 = _context6["catch"](5);
             (0, _alert.alert)("error", _context6.t0.response.data.message);
+            console.log(_context6.t0.response.data);
 
-          case 15:
+          case 16:
           case "end":
             return _context6.stop();
         }
@@ -34872,7 +34873,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56726" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58544" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
