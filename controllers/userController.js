@@ -2,7 +2,6 @@ const catchAsync = require("../util/catchAsync");
 const AppError = require("../util/appError");
 const jwt = require("jsonwebtoken");
 const User = require("../models/userModel");
-const Email = require("../util/email");
 
 // JWT:
 const signToken = (id) => {
@@ -48,26 +47,5 @@ exports.deleteAccount = catchAsync(async (req, res, next) => {
   res.status(204).json({
     status: "success",
     message: "Your Accunt has been deleted",
-  });
-});
-
-// Contact:
-exports.contact = catchAsync(async (req, res, next) => {
-  const { name, email, message } = req.body;
-  if (!name || !email || !message) {
-    return next(new AppError("Please fill all fields", 400));
-  }
-  const mail = {
-    from: process.env.EMAIL_ADD,
-    to: email,
-    name: name,
-    message: message,
-  };
-
-  await new Email(mail).sendAcknowledgement();
-
-  res.status(200).json({
-    status: "success",
-    message: "Your message has been sent",
   });
 });

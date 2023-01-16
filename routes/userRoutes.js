@@ -6,7 +6,7 @@ const userController = require("../controllers/userController");
 // Router.route("/signup").post(authController.signup);
 Router.route("/login").post(authController.login);
 Router.route("/logout").get(authController.logout);
-Router.route("/contact").post(userController.contact);
+Router.route("/contact").post(authController.contact);
 
 // Protected Routes:
 Router.use(authController.protect);

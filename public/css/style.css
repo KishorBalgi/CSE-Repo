@@ -160,7 +160,6 @@ main {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 20px;
-  place-items: center;
 }
 .card {
   display: grid;
@@ -170,6 +169,7 @@ main {
   background-color: var(--clr-foreground);
   border-radius: 10px;
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 .card__title {
   font-size: 25px;
@@ -621,6 +621,13 @@ main {
 }
 
 /* Media Queries */
+/* Screen size greater than 800px */
+@media screen and (min-width: 800px) {
+  .card:hover {
+    background-color: #ddd;
+    color: var(--clr-foreground);
+  }
+}
 @media screen and (max-width: 1350px) {
   .card {
     width: 250px;
