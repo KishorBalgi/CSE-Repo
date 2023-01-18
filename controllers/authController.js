@@ -165,6 +165,7 @@ exports.contact = catchAsync(async (req, res, next) => {
   if (!name || !email || !message) {
     return next(new AppError("Please fill all fields", 400));
   }
+  console.log(name, email, message);
   const mail = {
     from: process.env.EMAIL_ADD,
     to: email,
