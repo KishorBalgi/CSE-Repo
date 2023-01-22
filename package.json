@@ -5,6 +5,7 @@
   "main": "app.js",
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
+    "@vercel/analytics": "^0.1.8",
     "axios": "^0.27.2",
     "bcryptjs": "^2.4.3",
     "compression": "^1.7.4",
