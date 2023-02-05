@@ -4,6 +4,10 @@ const app = express();
 const cookieParser = require("cookie-parser");
 const compression = require("compression");
 const cors = require("cors");
+const rateLimit = require("express-rate-limit");
+const mongoSanitize = require("express-mongo-sanitize");
+const xss = require("xss-clean");
+const hpp = require("hpp");
 const AppError = require("./util/appError");
 const globalErrorHandler = require("./controllers/errorController");
 // Routers:
@@ -11,6 +15,7 @@ const viewRouter = require("./routes/viewRoutes");
 const userRouter = require("./routes/userRoutes");
 const adminRouter = require("./routes/adminRoutes");
 
+app.use(compression());
 // Pug template engine:
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
@@ -20,15 +25,21 @@ app.use(express.static(path.join(__dirname, "public")));
 // CORS:
 app.use(cors());
 // Data:
-app.use(compression());
 app.use(express.json({ limit: "10kb" }));
 app.use(cookieParser());
-
+const limiter = rateLimit({
+  max: 500,
+  windowMs: 60 * 60 * 1000,
+  message: "Too many requests from this id, retry after an hour.",
+});
+app.use("/api", limiter);
+// Prevent parameter pollution:
+app.use(hpp());
+// Data sanitization against NoSQL query injection:
+app.use(mongoSanitize());
+// Data sanitization against XSS:
+app.use(xss());
 // Routes:
-// app.use("/", (req, res, next) => {
-//   console.log(req.connection.remoteAddress);
-//   next();
-// });
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/admins", adminRouter);
 app.use("/", viewRouter);
@@ -37,7 +48,6 @@ app.all("*", (req, res, next) => {
   res.render("error", {
     title: "404 Not Found",
   });
-  // next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
 });
 app.use(globalErrorHandler);
 

@@ -46,7 +46,7 @@ if (copyCodeBtn) {
         alert("success", "Code copied to Clipboard!");
       })
       .catch((err) => {
-        console.log("Something went wrong", err);
+        alert("Something went wrong");
       });
   });
 }

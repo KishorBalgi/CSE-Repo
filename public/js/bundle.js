@@ -33901,16 +33901,15 @@ var contact = /*#__PURE__*/function () {
               document.querySelector(".contact-form").reset();
             }
 
-            _context6.next = 16;
+            _context6.next = 15;
             break;
 
           case 12:
             _context6.prev = 12;
             _context6.t0 = _context6["catch"](5);
             (0, _alert.alert)("error", _context6.t0.response.data.message);
-            console.log(_context6.t0.response.data);
 
-          case 16:
+          case 15:
           case "end":
             return _context6.stop();
         }
@@ -33973,16 +33972,15 @@ var updateProfile = /*#__PURE__*/function () {
               name: name,
               avatar: avatar
             };
-            console.log(data);
-            _context.prev = 5;
-            _context.next = 8;
+            _context.prev = 4;
+            _context.next = 7;
             return (0, _axios.default)({
               url: "/api/v1/users/profile",
               method: "PATCH",
               data: data
             });
 
-          case 8:
+          case 7:
             res = _context.sent;
 
             if (res.data.status === "success") {
@@ -33992,20 +33990,20 @@ var updateProfile = /*#__PURE__*/function () {
               }, 1500);
             }
 
-            _context.next = 15;
+            _context.next = 14;
             break;
 
-          case 12:
-            _context.prev = 12;
-            _context.t0 = _context["catch"](5);
+          case 11:
+            _context.prev = 11;
+            _context.t0 = _context["catch"](4);
             (0, _alert.alert)("error", _context.t0.response.data.message);
 
-          case 15:
+          case 14:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[5, 12]]);
+    }, _callee, null, [[4, 11]]);
   }));
 
   return function updateProfile(_x) {
@@ -34119,16 +34117,15 @@ var uploadCode = /*#__PURE__*/function () {
               lab: lab,
               code: code
             };
-            console.log(data);
-            _context2.prev = 8;
-            _context2.next = 11;
+            _context2.prev = 7;
+            _context2.next = 10;
             return (0, _axios.default)({
               method: "POST",
               url: "/api/v1/admins/uploadCode",
               data: data
             });
 
-          case 11:
+          case 10:
             res = _context2.sent;
 
             if (res.data.status === "success") {
@@ -34138,24 +34135,24 @@ var uploadCode = /*#__PURE__*/function () {
               }, 500);
             }
 
-            _context2.next = 18;
+            _context2.next = 17;
             break;
 
-          case 15:
-            _context2.prev = 15;
-            _context2.t0 = _context2["catch"](8);
+          case 14:
+            _context2.prev = 14;
+            _context2.t0 = _context2["catch"](7);
             (0, _alert.alert)("error", _context2.t0.response.data.message);
 
-          case 18:
+          case 17:
             uploadCodeBtn.innerHTML = "Upload";
             uploadCodeBtn.disabled = false;
 
-          case 20:
+          case 19:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[8, 15]]);
+    }, _callee2, null, [[7, 14]]);
   }));
 
   return function uploadCode(_x2) {
@@ -34675,7 +34672,7 @@ if (copyCodeBtn) {
     navigator.clipboard.writeText(code).then(function () {
       (0, _alert.alert)("success", "Code copied to Clipboard!");
     }).catch(function (err) {
-      console.log("Something went wrong", err);
+      (0, _alert.alert)("Something went wrong");
     });
   });
 } // Viewer count:
@@ -34873,7 +34870,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58544" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57855" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -33,7 +33,7 @@ const sendJWTToken = (user, statusCode, res, req) => {
 exports.signup = catchAsync(async (req, res, next) => {
   const { name, email, password } = req.body;
   //   Check if email and password exist:
-  if (!email || !password) {
+  if (!name || !email || !password) {
     return next(new AppError("Please provide email and password", 400));
   }
   //   Check if user exists:
@@ -41,8 +41,6 @@ exports.signup = catchAsync(async (req, res, next) => {
   if (user) {
     return next(new AppError("User already exists", 400));
   }
-
-  console.log(name, email, password);
   //   Create user:
   const newUser = await User.create({
     name,
@@ -141,6 +139,7 @@ exports.isLoggedIn = catchAsync(async (req, res, next) => {
       // }
       //   Grant access to protected route:
       res.locals.user = user;
+      req.user = user;
       return next();
     }
   } catch (err) {

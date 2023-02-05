@@ -1,8 +1,9 @@
 extend base
 
 block content 
+    #tsparticles
     main.home 
-        .card-container 
+        .card-container.glass
             a(href="/admin/createLab")
                 .card.animate__animated.animate__flipInX
                     p.card__title Create Lab
@@ -18,3 +19,10 @@ block content
             a(href="/admin/addCourse")
                 .card.animate__animated.animate__flipInX 
                     p.card__title Add Course
+    script.
+          (async () => {
+            await tsParticles.load("tsparticles", {
+                //- preset: "stars",
+                preset:"seaAnemone",
+            });
+          })();

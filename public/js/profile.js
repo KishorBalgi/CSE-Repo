@@ -17,7 +17,6 @@ export const updateProfile = async (e) => {
   const name = document.querySelector(".profile-edit-name").value;
   const avatar = document.querySelector(".profile-avatar-img").src;
   const data = { name, avatar };
-  console.log(data);
   try {
     const res = await axios({
       url: "/api/v1/users/profile",
