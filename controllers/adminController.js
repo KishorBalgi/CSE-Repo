@@ -6,6 +6,10 @@ const Code = require("../models/codeModel");
 // Create Lab:
 exports.createLab = catchAsync(async (req, res, next) => {
   const data = req.body;
+  // check if data is valid:
+  if (!data.name || !data.semester) {
+    return next(new AppError("Please fill all fields", 400));
+  }
   //Check if Lab already exists
   const lab = await Lab.findOne({ name: data.name, semester: data.semester });
   if (lab) {
@@ -13,7 +17,7 @@ exports.createLab = catchAsync(async (req, res, next) => {
   }
   data.createdBy = req.user.id;
   //Create lab
-  const newLab = await Lab.create(data);
+  await Lab.create(data);
   res.status(201).json({
     status: "success",
   });
@@ -28,7 +32,7 @@ exports.deleteLab = catchAsync(async (req, res, next) => {
     return next(new AppError(`Lab not found`, 400));
   }
   // delete all codes belonging to this lab:
-  const codes = await Code.deleteMany({ lab: labId });
+  await Code.deleteMany({ lab: labId });
   await lab.remove();
 
   res.status(204).json({
@@ -39,6 +43,10 @@ exports.deleteLab = catchAsync(async (req, res, next) => {
 // Upload code:
 exports.uploadCode = catchAsync(async (req, res, next) => {
   const data = req.body;
+  // Check if data is valid:
+  if (!data.title || !data.lab || !data.code) {
+    return next(new AppError("Please fill all fields", 400));
+  }
   // Check if code exists:
   const code = await Code.findOne({ title: data.title, lab: data.lab });
   if (code) {
@@ -47,6 +55,9 @@ exports.uploadCode = catchAsync(async (req, res, next) => {
   data.uploader = req.user.id;
   // Create code:
   const newCode = await Code.create(data);
+  if (!newCode) {
+    return next(new AppError(`Something went wrong`, 400));
+  }
   res.status(201).json({
     status: "success",
     codeId: newCode._id,
@@ -78,7 +89,7 @@ exports.editLab = catchAsync(async (req, res, next) => {
   if (!lab) {
     return next(new AppError(`Lab not found!`, 404));
   }
-  const updatedLab = await lab.updateOne(data);
+  await lab.updateOne(data);
   res.status(200).json({
     status: "success",
   });
