@@ -160,16 +160,23 @@ main {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 20px;
+  padding: 20px;
 }
 .card {
   display: grid;
   place-items: center;
   width: 300px;
   height: 60px;
-  background-color: var(--clr-foreground);
+  background-color: #ddd;
+  color: var(--clr-foreground);
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
+}
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
 }
 .card__title {
   font-size: 25px;
@@ -624,8 +631,8 @@ main {
 /* Screen size greater than 800px */
 @media screen and (min-width: 800px) {
   .card:hover {
-    background-color: #ddd;
-    color: var(--clr-foreground);
+    background-color: var(--clr-foreground);
+    color: #ddd;
   }
 }
 @media screen and (max-width: 1350px) {
@@ -661,6 +668,7 @@ main {
     flex-direction: column;
     align-items: normal;
     justify-content: center;
+    width: 90%;
   }
   .card {
     width: 90%;
@@ -750,4 +758,8 @@ main {
   .sem-lab {
     padding: 10px;
   }
+}
+/* particles */
+#tsparticles {
+  z-index: 0;
 }

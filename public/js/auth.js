@@ -144,6 +144,5 @@ export const contact = async (e) => {
     }
   } catch (err) {
     alert("error", err.response.data.message);
-    console.log(err.response.data);
   }
 };

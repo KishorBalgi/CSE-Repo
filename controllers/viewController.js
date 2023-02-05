@@ -37,7 +37,6 @@ exports.getTextBooks = catchAsync(async (req, res, next) => {
 });
 
 exports.getLogin = catchAsync(async (req, res, next) => {
-  console.log(req.user);
   if (req.user) {
     return res.redirect("/");
   }

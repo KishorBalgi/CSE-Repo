@@ -1,8 +1,9 @@
 extends base
 
 block content 
+    #tsparticles
     main.home 
-        .card-container 
+        .card-container.glass
             a(href="/notes")
                 .card.animate__animated.animate__flipInX
                     p.card__title Notes 📝
@@ -22,3 +23,9 @@ block content
             a(href="/placements")
                 .card.animate__animated.animate__flipInX 
                     p.card__title Placements 🏢
+    script.
+          (async () => {
+            await tsParticles.load("tsparticles", {
+              preset: "seaAnemone",
+            });
+          })();

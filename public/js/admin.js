@@ -39,7 +39,6 @@ export const uploadCode = async (e) => {
   const lab = document.querySelector(".code-lab").value;
   const code = document.querySelector(".code-content").value;
   const data = { title, lab, code };
-  console.log(data);
   try {
     const res = await axios({
       method: "POST",
