@@ -1,6 +1,8 @@
 const catchAsync = require("../util/catchAsync");
 const Lab = require("../models/labModel");
 const Code = require("../models/codeModel");
+const AppError = require("../util/appError");
+
 // const User = require("../models/userModel");
 
 exports.getIndex = catchAsync(async (req, res, next) => {
