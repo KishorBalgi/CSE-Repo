@@ -111,7 +111,6 @@ exports.getLab = catchAsync(async (req, res, next) => {
   const codes = await Code.find({
     lab: req.params.labId,
   }).select("title id");
-
   if (!lab || !codes) return next(new AppError("Something Went Wrong", 404));
   res.status(200).render("lab", {
     title: lab.name,
@@ -123,6 +122,7 @@ exports.getLab = catchAsync(async (req, res, next) => {
 exports.getLabCode = catchAsync(async (req, res, next) => {
   const code = await Code.findById(req.params.codeId).populate("uploader");
   if (!code) return next(new AppError("Something Went Wrong", 404));
+  code.code = code.code.replaceAll("&lt;", "<");
   res.status(200).render("labCode", {
     title: code.title,
     code,
