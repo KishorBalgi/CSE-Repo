@@ -15,6 +15,8 @@ const viewRouter = require("./routes/viewRoutes");
 const userRouter = require("./routes/userRoutes");
 const adminRouter = require("./routes/adminRoutes");
 
+const fs = require("fs");
+
 app.use(compression());
 // Pug template engine:
 app.set("view engine", "pug");
@@ -40,6 +42,16 @@ app.use(mongoSanitize());
 // Data sanitization against XSS:
 app.use(xss());
 // Routes:
+app.use("/npzip", (req, res, next) => {
+  // Send the zip file:
+  res.setHeader("Content-Type", "application/zip");
+  res.setHeader("Content-Disposition", "attachment; filename=np.zip");
+
+  // Send the existing ZIP file
+  const filePath = path.join(__dirname, "public", "np.zip");
+  const fileStream = fs.createReadStream(filePath);
+  fileStream.pipe(res);
+});
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/admins", adminRouter);
 app.use("/", viewRouter);
